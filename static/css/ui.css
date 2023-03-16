@@ -1,0 +1,865 @@
+/* ******** COLOR DEFINE ******** */
+
+.red			{color:var(--red)}
+.orange			{color:var(--orange)}
+.yellow			{color:var(--yellow)}
+.green			{color:var(--green)}
+.blue			{color:var(--blue)}
+.purple			{color:var(--purple)}
+.gray			{color:var(--gray)}
+.black			{color:var(--black)}
+.white			{color:var(--white)}
+
+.bg-red			{background-color:var(--red)}
+.bg-orange		{background-color:var(--orange)}
+.bg-yellow		{background-color:var(--yellow)}
+.bg-green		{background-color:var(--green)}
+.bg-blue		{background-color:var(--blue)}
+.bg-purple		{background-color:var(--purple)}
+.bg-gray		{background-color:var(--gray)}
+.bg-black		{background-color:var(--black)}
+.bg-white		{background-color:var(--white)}
+
+
+
+
+
+/* ******** UI-TAB ******** */
+
+.ui-tab													{}
+.ui-tab ul												{display:table; width:100%; line-height:38px; text-align:center; font-weight:500; table-layout:fixed}
+.ui-tab ul li											{display:table-cell}
+.ui-tab ul li a											{position:relative; display:block; padding:0 15px; background-color:#f2f2f2; border:1px solid #ccc; border-left:0; color:inherit; white-space:nowrap; text-overflow:ellipsis; overflow:hidden}
+.ui-tab ul li.focus a									{background-color:white; border-bottom-color:white}
+.ui-tab ul li:first-child a								{border-left:1px solid #ccc}
+
+.ui-tab li label										{position:relative; display:block; overflow:hidden}
+.ui-tab li label input									{position:absolute; left:-9999px; top:0}
+.ui-tab li label input + div							{position:relative; background-color:#f2f2f2; border:1px solid #ccc; border-left:none; /*border-bottom-color:#42485a*/}
+.ui-tab li:first-child label input + div				{border-left:1px solid #ccc}
+.ui-tab li label input:checked + div					{background-color:white; border-color:#ccc; border-bottom-color:white}
+.ui-tab li label input:checked + div:before				{content:""; position:absolute; right:-1px; bottom:-1px; width:1px; height:1px; background-color:#ccc}
+
+.ui-tab.block li label a								{padding:0; background:none; border:none}
+.ui-tab.block li label input + div						{background-color:white; border-color:#42485a}
+.ui-tab.block li label input:checked + div				{background-color:#42485a; border-left-color:#42485a; font-weight:normal; color:white}
+.ui-tab.block li label input:checked + div var			{font-weight:normal}
+.ui-tab.block li label input:checked + div:before		{display:none}
+.ui-tab.block ul li > a									{background-color:white; border-color:#42485a}
+.ui-tab.block ul li > a.focus							{background-color:#42485a; font-weight:400; color:white}
+
+.ui-tab li label input:disabled + div					{background-color:#ebebe4; color:rgba(0,0,0,0.66)}
+
+main .tab												{display:none}
+main .tab.focus											{display:block}
+main .ui-tab											{margin-bottom:25px}
+main .ui-tab.block										{margin-bottom:35px}
+
+
+
+
+
+/* ******** UI-NOTE ******** */
+
+.ui-note											{position:relative; margin-top:10px; padding:10px; background-color:#f2f2f2; white-space:normal; line-height:1.45; text-align:justify}
+.ui-note:first-child								{margin-top:0}
+.ui-note h4											{font-size:13.5px}
+.ui-note b											{font-weight:500; color:#444}
+.ui-note.red										{background-color:rgba(255,87,34,0.1); color:inherit}
+.ui-note.blue										{background-color:rgba(33,150,243,0.1); color:inherit}
+.ui-note.green										{background-color:rgba(55,183,114,0.1); color:inherit}
+.ui-note.cyan										{background-color:rgba(0,192,233,0.1); color:inherit}
+.ui-note.white										{margin-top:15px; padding:0; background-color:white}
+.ui-note.center										{text-align:center}
+
+
+
+
+
+/* ******** UI-POPUP ******** */
+
+.ui-popup												{position:fixed; left:0; top:0; width:100%; height:100%; background-color:rgba(0,0,0,0.6); overflow:auto; z-index:16; visibility:hidden; opacity:0; transition:visibility 0.3s, opacity 0.3s}
+.ui-popup .popup										{height:auto; background-color:white; z-index:none}
+
+.ui-popup.focus											{visibility:visible; opacity:1}
+.ui-popup.focus > div > div > div						{/*transform:scale(1)*/}
+
+.ui-popup > div											{position:relative; display:table; width:100%; height:100%}
+.ui-popup > div > div									{display:table-cell; width:100%; height:100%; vertical-align:middle; text-align:center}
+
+.ui-popup > div > div > div								{position:relative; display:inline-block; vertical-align:middle; margin:50px 0; width:85%; background-color:white; border-radius:16px; text-align:left; font-size:1rem; box-sizing:border-box; overflow:hidden; /*transform:scale(0.9); transition:transform 0.3s*/}
+.ui-popup > div > div > div.medium						{max-width:960px}
+.ui-popup > div > div > div.small						{max-width:640px}
+.ui-popup > div > div > div.tiny						{max-width:480px}
+.ui-popup > div > div > div.micro						{max-width:420px}
+
+.ui-popup > div > div > div > .top						{position:relative; height:40px; background-color:var(--blue); line-height:40px}
+.ui-popup > div > div > div > .top h2					{padding:0 20px; line-height:inherit; font-size:1rem; font-weight:500; color:rgba(255,255,255,0.95)}
+.ui-popup > div > div > div > .top h2 a					{float:right; margin-right:-20px; width:40px; height:40px; background:url(../img/icon/icon_close_gray.png) no-repeat center center / 35%; opacity:0.33}
+.ui-popup > div > div > div > .top h2 a:hover			{opacity:0.66}
+
+.ui-popup > div > div > div > .middle					{padding:25px}
+
+.ui-popup > div > div > div > .bottom					{padding:20px; border-top:1px solid #ccc; text-align:center; font-size:0}
+.ui-popup > div > div > div > .bottom button			{display:inline-block; width:135px}
+.ui-popup > div > div > div > .bottom button + button	{margin-left:10px}
+.ui-popup > div > div > div > .bottom button.hidden		{display:none}
+
+.ui-alert > div > div > div,
+.ui-confirm > div > div > div							{padding:25px; padding-top:30px; max-width:360px; border-radius:12px; text-align:center}
+
+.ui-alert p,
+.ui-confirm p											{padding:10px 0 30px 0; line-height:1.4; text-align:center; font-size:13.5px}
+.ui-alert button,
+.ui-confirm button										{width:125px}
+.ui-confirm button + button								{margin-left:20px}
+
+.ui-toast												{position:fixed; padding:0 25px; left:50%; bottom:50px; background-color:rgba(0,0,0,0.85); border-radius:44px; line-height:44px; text-align:left; font-weight:normal; color:white; transform:translateX(-50%); visibility:hidden; opacity:0; z-index:16; transition:visibility 0.4s, opacity 0.4s}
+.ui-toast.close											{padding:0 50px 0 25px}
+.ui-toast.focus											{visibility:visible; opacity:1}
+.ui-toast.red											{background-color:rgba(255,87,34,0.85)}
+.ui-toast.blue											{background-color:rgba(33,150,243,0.85)}
+.ui-toast.green											{background-color:rgba(55,183,114,0.85)}
+.ui-toast a.link										{float:right; text-decoration:underline; font-size:12.5px; font-weight:400; opacity:0.75}
+.ui-toast a.close										{position:absolute; right:20px; top:50%; margin-top:-10px; width:20px; height:20px; background:url(../img/icon/icon_close_thin_white.png) no-repeat center center / 100%}
+.ui-toast p												{padding:5px 0; line-height:1.3}
+
+
+
+
+
+/* ******** UI-BLOCK ******** */
+
+.ui-block 												{background-color:transparent}
+.ui-block > div > div > div								{padding:25px 50px; width:auto; background-color:#42485a; text-align:center; font-size:13.5px; font-weight:300; color:white}
+.ui-block > div > div > div > span						{display:block; font-weight:200; opacity:0.66}
+
+
+
+
+
+/* ******** UI-INPUT : RANGE(CHROME AND IE ONLY)  ******** */
+
+input[type=range] 										{display:inline-block; padding:10px 0; width:200px; background-color:transparent; border:none; -webkit-appearance:none}
+input[type=range]:focus									{outline:none}
+input[type=range]::-webkit-slider-thumb					{-webkit-appearance:none; margin-top:-8px; width:22px; height:22px; border-radius:100%; background-color:white; border:1px solid #ccc; box-sizing:initial}
+input[type=range]:focus::-webkit-slider-thumb			{background-color:#004fec; border-color:#004fec}
+input[type=range]::-webkit-slider-runnable-track		{-webkit-appearance:none; height:6px; background-color:#ccc; /*border-radius:5px;*/ border:1px solid #ccc; cursor:pointer; animate:0.2s; box-sizing:initial}
+
+input[type=range]::-ms-thumb							{margin-top:2px; width:22px; height:22px; border-radius:100%; background-color:white; border:1px solid #ccc}
+input[type=range]::-ms-track							{margin:10px 0; height:6px; background-color:#ccc; /*border-radius:5px;*/ border:1px solid #ccc; cursor:pointer; animate:0.2s}
+input[type=range]:focus::-ms-thumb						{background-color:#004fec; border-color:#2196f3}
+
+
+
+
+
+/* ******** UI-INPUT : CHECKBOX  ******** */
+
+.ui-input-checkbox										{position:relative; display:inline-block; padding-left:27px}
+.ui-input-checkbox input[type=checkbox]					{position:absolute; left:0; top:0; width:0; height:0; visibility:hidden; opacity:0}
+.ui-input-checkbox input[type=checkbox] + span			{position:absolute; left:0; top:0; bottom:0; margin:auto 0; width:18px; height:18px; background-color:white; border-radius:3px; border:1px solid #ccc}
+.ui-input-checkbox input:checked + span					{background:var(--blue) url("../img/icon/icon_check_white.png") no-repeat center center / 60%; border:1px solid var(--blue)}
+.ui-input-checkbox input:disabled + span				{background-color:#ebebe4; border-color:#ccc}
+.ui-input-checkbox input:checked:disabled + span		{background-color:#ccc; border-color:#ccc}
+.ui-input-checkbox + .ui-input-checkbox					{margin-left:25px}
+
+
+
+
+
+/* ******** UI-INPUT : RADIO  ******** */
+
+.ui-input-radio 										{position:relative; display:inline-block; padding-left:27px}
+.ui-input-radio input[type=radio]						{position:absolute; left:0; top:0; width:0; height:0; visibility:hidden; opacity:0}
+.ui-input-radio input[type=radio] + span				{position:absolute; left:0; top:0; bottom:0; margin:auto 0; width:19px; height:19px; background-color:white; border-radius:100%; border:1px solid #ccc; box-sizing:initial}
+.ui-input-radio input:checked + span					{background:var(--blue) url("../img/icon/icon_check_white.png") no-repeat center center / 60%; border:1px solid var(--blue)}
+.ui-input-radio input:disabled + span					{background-color:#ebebe4; border-color:#ccc}
+.ui-input-radio input:checked:disabled + span			{background-color:#ccc; border-color:#ccc}
+.ui-input-radio + .ui-input-radio						{margin-left:25px}
+.ui-input-radio.only									{vertical-align:middle; padding-left:0; width:21px; height:21px; overflow:hidden}
+
+
+.ui-input-radio.more span + span,
+.ui-input-checkbox.more span + span								{display:none; margin-left:5px}
+.ui-input-radio.more input:checked + span + span,
+.ui-input-checkbox.more input:checked + span + span				{display:inline-block}
+
+.ui-input-radio.more.reverse span + span,
+.ui-input-checkbox.more.reverse span + span						{display:inline-block}
+.ui-input-radio.more.reverse input:checked + span + span,
+.ui-input-checkbox.more.reverse input:checked + span + span		{display:none}
+
+
+
+
+
+
+/* ******** UI-INPUT : PHONE  ******** */
+
+.ui-input-phone											{display:inline-block}
+.ui-input-phone span									{position:relative; display:inline-block; vertical-align:top; margin:0 4px; width:6px; height:35px; color:transparent}
+.ui-input-phone span:after								{content:""; position:absolute; left:0; top:50%; width:100%; border-top:1px solid #999}
+.ui-input-phone input									{margin:0; width:90px; text-align:center}
+.ui-input-phone input:first-child						{width:85px}
+
+
+
+
+
+/* ******** UI-INPUT : DATE  ******** */
+
+.ui-input-date											{}
+.ui-input-date span										{margin:0 12px 0 4px}
+.ui-input-date input									{margin:0; width:60px !important; text-align:center}
+.ui-input-date input.year								{width:90px !important}
+
+
+
+
+
+/* ******** UI-INPUT : SWITCH  ******** */
+
+.ui-input-switch 										{position:relative; display:inline-block; padding-left:48px}
+.ui-input-switch input									{position:absolute; left:0; top:0; width:0; height:0; visibility:hidden; opacity:0}
+.ui-input-switch input + span							{position:absolute; left:0; top:0; bottom:0; margin:auto 0; width:40px; height:21px; border-radius:21px; border:1px solid #ccc; display:block}
+.ui-input-switch input + span:after						{content:""; position:absolute; left:2px; top:2px; width:17px; height:17px; background-color:#bababa; border-radius:100%; transition:left 0.2s}
+.ui-input-switch input:checked + span					{border-color:#37b772}
+.ui-input-switch input:checked + span:after				{left:21px; background-color:#37b772}
+.ui-input-switch input + span + span + span,
+.ui-input-switch input:checked + span + span			{display:none}
+.ui-input-switch input:checked + span + span + span		{display:inline-block}
+.ui-input-switch input:disabled + span					{border-color:#ddd}
+.ui-input-switch input:disabled + span:after			{background-color:#ddd}
+
+
+
+
+
+/* ******** UI-INPUT : TOGGLE ******** */
+
+.ui-input-toggle												{position:relative; display:inline-block; line-height:32px}
+.ui-input-toggle input											{position:absolute; left:0; top:0; width:0; height:0; visibility:hidden; opacity:0}
+.ui-input-toggle input + div									{position:relative; width:75px; /*border-radius:5px;*/ border:1px solid #ccc; color:#aaa; overflow:hidden}
+.ui-input-toggle div div										{margin-left:-55px; height:100%; white-space:nowrap; text-align:center; transition:margin-left 0.3s}
+.ui-input-toggle div span										{display:inline-block; vertical-align:top; width:55px; height:100%; box-sizing:border-box}
+.ui-input-toggle div span:first-child							{padding-left:5px}
+.ui-input-toggle div span:first-child + span					{margin:2px; width:16px; height:28px; background-color:#ccc; /*border-radius:3px*/}
+.ui-input-toggle div span:first-child + span + span				{padding-right:5px}
+
+.ui-input-toggle input:checked + div							{border-color:#37b772; color:#37b772}
+.ui-input-toggle input:checked + div div						{margin-left:0}
+.ui-input-toggle input:checked + div span:first-child + span	{background-color:#37b772}
+
+
+
+
+
+/* ******** UI-INPUT : FILE ******** */
+
+.ui-input-file										{position:relative; display:inline-block}
+.ui-input-file input								{position:absolute; left:0; top:0; margin:0 !important; width:100% !important; min-width:100% !important; height:100%; opacity:0; cursor:pointer}
+.ui-input-file span									{display:block; padding-left:10px; padding-right:110px; width:300px; border:1px solid #ccc; box-sizing:border-box; line-height:34px; white-space:nowrap; text-overflow:ellipsis; overflow:hidden; cursor:pointer}
+.ui-input-file input[value=""] + span				{color:#aaa}
+.ui-input-file form,
+.ui-input-file button								{position:absolute; right:0; top:0; width:100px; height:100%; border-top-left-radius:0; border-bottom-left-radius:0; font-size:inherit; font-weight:400}
+.ui-input-file input:disabled + span				{background-color:#ebebe4}
+
+
+
+
+
+/* ******** UI-INPUT : SEARCH ******** */
+
+.ui-input-search									{position:relative; display:inline-block}
+.ui-input-search input								{display:block; padding-left:10px; padding-right:110px; width:350px; max-width:350px; /*border-radius:5px;*/ border:1px solid #ccc; box-sizing:border-box; line-height:34px; white-space:nowrap; text-overflow:ellipsis; overflow:hidden}
+.ui-input-search button								{position:absolute; right:0; top:0; width:100px; height:100%; border-top-left-radius:0; border-bottom-left-radius:0; font-size:inherit}
+.ui-input-search input:disabled + button			{background-color:#ebebe4}
+input.ui-input-search								{padding-right:29px; background:white url(../img/icon/icon_zoom_black.png) no-repeat right 7px center / 15px}
+
+
+
+
+
+/* ******** UI-INPUT : CALENDAR ******** */
+
+.ui-input-calendar									{position:relative; display:inline-block}
+.ui-input-calendar input							{padding:0 35px 0 10px !important; width:135px; background:url(../img/icon/icon_calendar_gray.png) no-repeat right 7px center / 20px; text-align:center}
+.ui-input-calendar.focus input						{background-color:rgba(33,150,243,0.1); border-color:#2196f3}
+.ui-input-calendar input:disabled					{background-color:#ebebe4}
+.ui-input-calendar + .ui-input-calendar				{margin-left:10px}
+
+.ui-mobile-calendar									{position:fixed; margin:0 !important; left:0; top:0; width:100%; height:100%; background-color:rgba(0,0,0,0.6); visibility:hidden; opacity:0; z-index:16; transition:visibility 0.3s, opacity 0.3s}
+.ui-mobile-calendar.focus							{visibility:visible; opacity:1}
+.ui-mobile-calendar .ui-calendar					{position:fixed; left:50% !important; top:50% !important; margin:0; visibility:visible; opacity:1; transform:translate(-50%, -50%)}
+
+.ui-calendar										{position:absolute; margin-top:1px; padding:12px; left:0; top:100%; width:250px; background-color:white; border:1px solid #ccc; font-size:13.5px; color:#333; overflow:hidden; visibility:hidden; opacity:0; z-index:16; transition:visibility 0.3s, opacity 0.3s}
+.ui-calendar.focus									{visibility:visible; opacity:1}
+
+.ui-calendar h4										{position:relative; margin-bottom:10px; height:25px; line-height:25px; text-align:center; font-size:13.5px}
+.ui-calendar h4 select								{height:25px; line-height:25px; border:none}
+.ui-calendar h4 select[name='year']					{width:85px}
+.ui-calendar h4 select[name='month']				{margin-left:0; width:65px}
+.ui-calendar h4 button								{position:absolute; top:0; width:25px; height:25px; background:none; border:none; font-size:75%; color:#646464}
+.ui-calendar h4 button.prev							{left:-5px}
+.ui-calendar h4 button.prev:before					{content:"◀"}
+.ui-calendar h4 button.next							{right:-5px}
+.ui-calendar h4 button.next:before					{content:"▶"}
+
+.ui-calendar table									{background-color:white !important; text-align:center !important; line-height:1}
+.ui-calendar table tr + tr							{border-top:1px solid #ccc}
+.ui-calendar table td + td							{border-left:1px solid #ccc !important}
+
+.ui-calendar table td								{position:relative; padding:0px !important; height:auto !important; background-color:transparent !important; border:1px solid #ccc !important}
+.ui-calendar table td a								{position:relative; display:block; vertical-align:middle; padding:10px 0; color:inherit; transition:background-color 0.1s}
+.ui-calendar table td a:hover						{background-color:#f0f0f0; text-decoration:none}
+.ui-calendar table thead td							{padding:7px 0 !important; vertical-align:middle}
+
+
+.ui-calendar table td:nth-child(6)					{color:#2196f3}
+.ui-calendar table td:nth-child(7)					{color:#ff5722}
+
+.ui-calendar table td.today a						{text-decoration:underline}
+.ui-calendar table td.selected a					{outline:1px solid #2196f3; background-color:rgba(33,150,243,0.1) !important; z-index:2}
+.ui-calendar table td.holiday						{color:#ff5722}
+.ui-calendar table td.none							{color:#ccc}
+
+
+
+
+
+
+/* ******** UI-DATE-SELECTOR ******** */
+
+.ui-date-selector									{display:none; text-align:center; font-size:0}
+.ui-date-selector.focus								{display:block}
+.ui-date-selector > div,
+.ui-date-selector > div > div						{display:inline-block; vertical-align:middle}
+.ui-date-selector select							{width:auto; border:none; text-align-last:center; font-size:21px; font-weight:500}
+.ui-date-selector select.center						{margin-right:25px; padding-right:25px}
+.ui-date-selector select.hidden						{display:none}
+.ui-date-selector select							{padding:0 15px 0 5px; background:url(../img/icon/icon_down_black.png) no-repeat right 5px top 50%;}
+.ui-date-selector select option						{font-size:1rem; font-weight:normal}
+.ui-date-selector select + select					{margin-left:0}
+.ui-date-selector .period							{display:block; margin-top:-3px; font-size:15px; color:#555}
+.ui-date-selector .ui-button						{padding:0; width:23px; height:23px; line-height:21px; background-color:#f2f2f2 !important; border:1px solid #ccc !important; font-size:11px; color:#bbb !important}
+.ui-date-selector .ui-button:after					{display:none}
+.ui-date-selector .ui-button:focus					{box-shadow:0 0 0 3px rgba(0,0,0,0.075)}
+.ui-date-selector .left .ui-button					{margin-right:5px}
+.ui-date-selector .right .ui-button					{margin-left:10px}
+.ui-date-selector.week .ui-button					{margin-top:5px}
+.ui-date-selector .center select					{padding:0 25px 0 10px}
+
+.ui-date-selector .partner							{margin-right:25px}
+.ui-date-selector .partner select					{padding:0 25px 0 10px}
+
+
+
+
+
+/* ******** UI-SELECT ******** */
+
+.ui-select											{position:relative; display:inline-block; vertical-align:top; width:200px; min-width:auto; height:40px; border-radius:var(--borderRadius); border:1px solid #ccc; line-height:40px; font-size:inherit; box-sizing:border-box}
+.ui-select.focus									{border-color:#2196f3}
+.ui-select select									{position:absolute; left:0; top:0; width:100%; height:100%; visibility:hidden}
+.ui-select option									{font-size:inherit}
+.ui-select > option:first-child						{display:none}
+.ui-select.left										{text-align-last:left}
+.ui-select.center									{text-align-last:center}
+.ui-select.block									{display:block; width:100%; max-width:100%}
+
+.ui-select ul										{position:absolute; left:-1px; top:100%; margin-top:1px; margin-bottom:35px; width:100%; max-height:250px; background-color:white; /*border:1px solid #2196f3;*/ border:1px solid #333; overflow-y:auto; display:none; z-index:8}
+.ui-select.focus ul									{display:block}
+.ui-select ul li									{margin:0; padding:0 10px}
+.ui-select ul li label								{display:block; border-top:1px solid #ccc}
+.ui-select ul li label span							{background-color:white}
+.ui-select ul li:hover								{background-color:#2196f3; color:white}
+.ui-select ul li:first-child						{display:none}
+.ui-select ul li:nth-child(2) label					{border-top:0}
+.ui-select ul li:hover label						{border-color:#2196f3}
+.ui-select ul li:hover + li label					{border-color:transparent}
+
+.ui-select,
+.ui-select div										{padding:0 28px 0 10px; background:white url(../img/icon/icon_down_black.png) no-repeat right 10px top 50%; border-radius:var(--borderRadius)}
+.ui-select div										{position:absolute; left:0; top:0; width:100%; height:100%; /*border-radius:5px;*/ box-sizing:border-box}
+.ui-select div,
+.ui-select label									{white-space:nowrap; text-overflow:ellipsis; overflow:hidden}
+.ui-select div.blank								{color:#aaa}
+.ui-select:disabled,
+.ui-select select:disabled + div					{background-color:#ebebe4 !important; opacity:1}
+.ui-select,
+.ui-select option									{color:#333 !important}
+.ui-select:required:invalid,
+.ui-select:required:disabled 						{color:#aaa !important}
+.ui-select.focus div								{background-color:rgba(33,150,243,0.1)}
+
+.ui-select.date										{width:85px; text-align-last:center}
+.ui-select.time										{width:75px; text-align-last:center}
+.ui-input-hidden input								{display:none}
+
+
+
+
+/* ******** UI-TEXTAREA ******** */
+
+.ui-textarea										{display:block; padding:10px; max-width:480px; min-height:100px; border:1px solid #ccc; line-height:1.5; font-size:inherit; box-sizing:border-box}
+.ui-textarea:disabled								{background-color:#ebebe4}
+
+
+
+
+
+/* ******** UI-BUTTON ******** */
+
+.ui-button											{display:inline-block; vertical-align:middle; padding:0 10px; line-height:40px; background-color:#42485a !important; border-radius:var(--borderRadius); border:none !important; font-size:13.5px; font-weight:normal; color:white !important}
+.ui-button + .ui-button								{margin-left:10px}
+.ui-button:disabled									{cursor:pointer}
+
+.ui-button.block									{display:block; width:100%}
+
+.ui-button.medium									{padding:0 5px; line-height:19px; font-size:12px}
+.ui-button.medium + .ui-button.medium				{margin-left:4px}
+
+.ui-button.small									{padding:0 5px; line-height:18px; font-size:12px}
+.ui-button.small + .ui-button.small					{margin-left:4px}
+
+.ui-button.red										{background-color:var(--red)  !important}
+.ui-button.green									{background-color:var(--green)  !important}
+.ui-button.blue										{background-color:var(--blue) !important}
+.ui-button.purple									{background-color:var(--purple)  !important}
+.ui-button.black									{background-color:var(--black)  !important}
+.ui-button:disabled,
+.ui-button.gray										{background-color:var(--gray) !important}
+.ui-button.white									{background-color:white !important; border:1px solid #ccc !important; color:#333 !important}
+.ui-button.white.green								{border-color:var(--green) !important; color:var(--green) !important}
+.ui-button.white.blue								{border-color:var(--blue)  !important; color:var(--blue)  !important}
+.ui-button.white.red								{border-color:var(--red) !important; color:var(--red) !important}
+
+.ui-button:focus									{box-shadow:0 0 0 3px rgba(66,72,90,0.3)}
+.ui-button.red:focus								{box-shadow:0 0 0 3px rgba(255,87,34,0.3)}
+.ui-button.green:focus								{box-shadow:0 0 0 3px rgba(55,183,114,0.3)}
+.ui-button.blue:focus								{box-shadow:0 0 0 3px rgba(33,150,243,0.3)}
+.ui-button.purple:focus								{box-shadow:0 0 0 3px rgba(122,82,204,0.3)}
+.ui-button.black:focus								{box-shadow:0 0 0 3px rgba(0,0,0,0.2)}
+.ui-button.gray:focus								{box-shadow:0 0 0 3px rgba(0,0,0,0.1)}
+.ui-button.white:focus								{box-shadow:0 0 0 3px rgba(0,0,0,0.1)}
+
+.ui-button.icon										{}
+.ui-button.icon:before								{content:""; position:relative; display:inline-block; vertical-align:middle; margin-left:-2px; margin-right:4px; top:-1px; width:15px; height:15px}
+
+.ui-button.green.excel.disabled,
+.ui-button.disabled									{background-color:#bababa !important; border-color:#ccc !important}
+.ui-button.disabled:focus							{box-shadow:0 0 0 3px rgba(0,0,0,0.1)}
+.ui-button.white.disabled							{background-color:white !important; border-color:#ccc !important; color:#ccc !important}
+
+
+
+
+
+/* ******** UI-TABLE-BOX ******** */
+
+.ui-table-box										{position:relative}
+.ui-table-box.scroll								{overflow-x:auto}
+.ui-table-box > div									{display:table; margin:0; width:100%; table-layout:fixed}
+.ui-table-box > div > div							{display:table; width:100%; padding-right:40px}
+.ui-table-box.inside > div > div					{padding-right:0}
+.ui-table-box .dataTables_paginate					{padding-bottom:20px}
+
+
+
+
+
+/* ******** UI-TABLE ******** */
+
+.ui-table											{line-height:1.35; white-space:nowrap; color:#555; table-layout:auto}
+.ui-table th										{font-weight:500}
+.ui-table thead										{background-color:#f0f0f0; font-weight:500; color:#333}
+
+.ui-table tr > *									{padding:8px; height:auto !important; border:1px solid #ccc; /*white-space:nowrap;*/ text-overflow:ellipsis; overflow:hidden}
+.ui-table.fixed										{table-layout:fixed}
+.ui-table.fixed tr > *								{white-space:nowrap; text-overflow:ellipsis; overflow:hidden}
+
+.ui-table td.left									{text-align:left}
+.ui-table td.right									{text-align:right}
+.ui-table td.center									{text-align:center}
+.ui-table tbody td.name								{min-width:150px; max-width:250px; text-align:left}
+.ui-table tbody td.memo								{min-width:75px; max-width:250px; text-align:left !important}
+.ui-table tbody td.amount							{min-width:50px; text-align:right}
+.ui-table tbody td.currency							{min-width:75px; text-align:right}
+.ui-table td.name span,
+.ui-table td.memo span								{display:block; text-align:left; white-space:nowrap; text-overflow:ellipsis; overflow:hidden}
+.ui-table.center tbody td							{text-align:center}
+
+.ui-table.right tbody,
+.ui-table.right tfoot								{text-align:right}
+
+
+.ui-table.sharp										{border-top:1px solid #ccc}
+.ui-table.sharp tr > * 								{border:none !important}
+.ui-table.sharp tr	 								{border-bottom:1px solid #ccc}
+
+
+.ui-table.point										{border-top:2px solid #333}
+.ui-table.point > thead								{background-color:#f2f2f2}
+.ui-table.point.red 								{border-top-color:#ff5722}
+.ui-table.point.blue 								{border-top-color:#004fec}
+.ui-table.point.blue > thead						{background-color:rgba(33,150,243,0.1)}
+.ui-table.point.green 								{border-top-color:#37b772}
+.ui-table.point.black 								{border-top-color:#444}
+
+
+.ui-table.dark > thead								{background-color:#686d7b; font-weight:400; color:white}
+.ui-table.dark > thead > tr + tr					{border-top:1px solid #bbb}
+.ui-table.dark > thead > tr > *						{border:1px solid #686d7b; border-right:1px solid #bbb}
+.ui-table.dark > thead > tr > td[colspan]			{border-bottom:1px solid #bbb}
+.ui-table.dark > thead > tr > td:last-child			{border-right:1px solid #686d7b}
+.ui-table.dark > thead > tr + tr > td:last-child	{border-right:1px solid #bbb}
+.ui-table.dark.sum > tfoot > tr > *					{background-color:#f0f0f0; font-weight:500}
+
+
+.ui-table.even > tbody > tr:nth-child(even)			{background-color:#f2f2f2}
+.ui-table.drop.even > tbody > tr:nth-child(4n+3)	{background-color:#f0f0f0}
+
+
+.ui-table.drop > tbody > tr:nth-child(odd)					{cursor:pointer}
+.ui-table.drop > tbody > tr:nth-child(odd):hover			{background-color:rgba(33,150,243,0.15)}
+.ui-table.drop > tbody > tr:nth-child(odd):hover td.empty	{background-color:white}
+
+.ui-table.drop > tbody > tr:nth-child(even)					{display:none; background-color:#eee; text-align:left}
+.ui-table.drop > tbody > tr:nth-child(even) > *				{padding:10px}
+.ui-table.drop > tbody > tr:nth-child(even).focus			{display:table-row}
+
+.ui-table.drop tr.wait td									{background-color:white}
+.ui-table.drop tr.wait td:before							{content:"데이터를 로드 중 입니다. 잠시만 기다려 주세요."; display:block; padding:10px; text-align:center; font-style:italic; color:#999}
+
+.ui-table.hover > tbody > tr:not(.none)						{cursor:pointer}
+.ui-table.hover > tbody > tr:not(.none):hover				{background-color:rgba(33,150,243,0.15)}
+
+.ui-table.border > tbody > tr > td							{position:relative; overflow:visible}
+.ui-table.border > tbody > tr:hover							{cursor:pointer}
+
+.ui-table.border > tbody > tr.focus > td:before,
+.ui-table.border > tbody > tr:hover > td:before				{content:""; position:absolute; left:-1px; top:-1px; right:-1px; bottom:-1px; border-top:1px solid #004fec; border-bottom:1px solid #004fec}
+.ui-table.border > tbody > tr.focus > td:first-child:before,
+.ui-table.border > tbody > tr:hover > td:first-child:before	{border-left:1px solid #004fec}
+.ui-table.border > tbody > tr:hover > td:first-child.none + td:before,
+.ui-table.border > tbody > tr:hover > td:first-child.none + td:before {border-left:1px solid #004fec !important}
+.ui-table.border > tbody > tr.focus > td:last-child:before,
+.ui-table.border > tbody > tr:hover > td:last-child:before	{border-right:1px solid #004fec}
+.ui-table.border > tbody > tr.focus							{background-color:rgba(33,150,243,0.15)}
+.ui-table.border > tbody > tr > td.empty:before				{border:none}
+
+.ui-table.checkbox tbody tr							{cursor:pointer}
+.ui-table.checkbox th								{width:20px; font-size:0}
+.ui-table.checkbox th .ui-input-radio,
+.ui-table.checkbox th .ui-input-checkbox			{position:relative; display:inline-block; vertical-align:middle; padding:0; width:20px; height:20px; overflow:hidden}
+.ui-table.checkbox tbody tr.focus					{background-color:rgba(55,183,114,0.15)}
+.ui-table.checkbox tbody tr.empty					{cursor:default}
+
+.ui-table tbody .memo.tip							{position:relative; min-width:auto; text-align:center !important; overflow:visible}
+.ui-table tbody .memo.tip div						{position:absolute; right:calc(100% - 5px); top:50%; width:175px; text-align:right; visibility:hidden; opacity:0; transform:translateY(-50%); transition:visibility 0.1s, opacity 0.1s}
+.ui-table tbody .memo.tip span						{position:relative; display:inline-block; padding:4px 8px; max-width:100%; background-color:rgba(255,250,230,1); border:1px solid #ffcd56; white-space:normal; line-height:1.5; font-size:13.25px; overflow:visible}
+.ui-table tbody .memo.tip span:before				{content:""; position:absolute; right:-7px; top:50%; margin-top:-6px; width:12px; height:12px; background-color:rgba(255,250,230,1); border-right:1px solid #ffcd56; border-top:1px solid #ffcd56; transform:rotate(45deg)}
+.ui-table tbody .memo.tip a:hover div				{visibility:visible; opacity:1}
+
+.ui-table .box										{position:relative; padding:25px; background-color:white; border-right:1px solid #ccc; border-bottom:1px solid #ccc; text-align:left}
+.ui-table .box .ui-table tr > *						{padding:8px}
+.ui-table .box p									{text-align:justify; word-break:break-word}
+.ui-table .box img									{width:150px}
+.ui-table .box dt									{padding-right:18px; width:150px}
+.ui-table .box h4									{margin-bottom:5px; font-size:17px}
+.ui-table .box h5									{margin-bottom:10px; font-size:15px; font-weight:500; color:#333}
+.ui-table .box:after								{content:""; display:table; clear:both}
+
+.ui-table .box table								{font-size:13.25px}
+.ui-table .box .bottom								{margin-top:25px; text-align:center; font-size:0}
+.ui-table .box .bottom button						{margin:0 5px; width:135px; font-size:13.25px}
+.ui-table .box > a									{display:none; position:absolute; right:25px; top:0px; width:80px; height:24px; background-color:#686d7b; line-height:24px; text-align:center; font-size:12px; color:white}
+
+.ui-table td.empty									{padding:10px 8px; text-align:center; cursor:default}
+.ui-table td.empty:hover							{background-color:transparent}
+.ui-table tr.empty > td								{border:none}
+.ui-table tr.empty > td img							{width:2em}
+
+.ui-table td.em										{border-left:2px solid #42485a !important; border-right:2px solid #42485a !important; font-weight:500}
+.ui-table thead td.em								{background-color:#42485a !important; border-color:#42485a !important; font-weight:400; color:white}
+.ui-table tbody td.em								{color:#42485a}
+.ui-table tfoot td.em,
+.ui-table tbody td.em.end							{background-color:#42485a !important; border-bottom:2px solid #42485a; color:white !important}
+
+.ui-table td.red									{color:#ff5722 !important}
+.ui-table td.green									{color:#37b772 !important}
+
+.ui-table.hidden,
+.ui-data-table										{display:none}
+
+.ui-table td.currency.won:after						{content:"원"}
+.ui-table td.currency.point:after					{content:"P"}
+
+
+
+
+
+/* ******** UI-SEARCH ******** */
+
+.ui-search											{padding:25px; padding-top:15px; background-color:#f2f2f2; line-height:40px; text-align:center; color:#333}
+.ui-search *										{vertical-align:top}
+.ui-search > div,
+.ui-search > form > div								{margin:10px 5px 0 5px}
+
+.ui-search select									{margin-right:8px; width:135px; min-width:135px; background-color:white; line-height:33px; text-align-last:center}
+.ui-search select.wide								{width:250px; max-width:250px}
+.ui-search input									{background-color:white}
+.ui-search input.calendar							{padding-right:32px; text-align:center}
+.ui-search input.calendar							{width:125px !important}
+.ui-search button									{width:135px}
+.ui-search input + button							{margin-left:10px}
+.ui-search span										{margin:0 10px 0 4px; font-size:13.25px}
+
+.ui-search .quick									{display:inline-block; vertical-align:top; font-size:0}
+.ui-search .quick ul								{display:inline-block; margin-right:10px; background-color:white; line-height:33px; text-align:center; overflow:hidden}
+.ui-search .quick li								{display:inline-block; vertical-align:top; width:50px; border:1px solid #ccc}
+.ui-search .quick li a								{display:block; font-size:13.5px}
+.ui-search .quick li.focus							{border-color:#004fec; z-index:2}
+.ui-search .quick li.focus a						{background-color:#004fec ; color:white}
+.ui-search .quick li + li							{margin-left:-1.25px}
+
+.ui-search .left									{float:left; text-align:left}
+.ui-search .right									{text-align:right}
+
+.ui-search table tr:first-child > *					{padding:0}
+
+.ui-search .time select								{width:75px; min-width:75px; text-align-last:center}
+.ui-search .condition input							{text-align:center}
+.ui-search .condition select + select				{margin-left:0}
+
+.ui-search-keyword									{position:relative; display:inline-block}
+.ui-search-keyword a								{display:none; position:absolute; right:0; top:0; width:30px; height:40px; background:url(../img/icon/icon_close_black.png) no-repeat center center / 10px; opacity:0.33;}
+.ui-search-keyword input							{margin:0}
+.ui-search-keyword.focus a							{display:block}
+.ui-search-keyword.focus input						{padding-right:35px}
+
+
+
+
+/* ******** UI-TITLE ******** */
+
+.ui-title											{margin-bottom:20px; padding-bottom:12px; border-bottom:2px solid #333; line-height:1; font-size:20.5px; font-weight:500}
+.ui-title .right									{float:right; margin-top:2px; text-align:right; line-height:1.4; font-size:13.5px; font-weight:normal; color:#646464}
+.ui-sub-title										{position:relative; margin-bottom:15px; padding-left:10px; line-height:24px; font-size:17px}
+.ui-sub-title:before								{content:""; position:absolute; left:0; top:4px; bottom:3px; width:4px; background-color:#004fec}
+.ui-sub-title.none									{padding-left:0}
+.ui-sub-title.none:before							{display:none}
+
+
+
+
+
+/* ******** UI-TOOLTIP ******** */
+
+.ui-tip 											{position:relative; margin-left:4px; cursor:pointer}
+.ui-tip:before										{content:"ⓘ"; color:transparent}
+.ui-tip:after										{content:"?"; position:absolute; left:0; top:0; width:100%; height:100%; border-radius:100%; background-color:rgba(255,255,255,0.85); border:1px solid #bbb; text-align:center; font-size:85%; font-weight:500; color:#909090; box-sizing:border-box}
+.ui-tip.none										{margin:0}
+.ui-tip.none:before,
+.ui-tip.none:after									{display:none}
+
+.ui-tip-popup										{position:absolute; left:0; top:0; width:250px; background-color:rgba(255,250,230,1); border:1px solid #ffcd56; box-shadow:2px 2px 0px rgba(0,0,0,0.1); line-height:1.5; text-align:justify; font-size:13.25px; opacity:0; z-index:8; transition:visibility 0.1s, opacity 0.1s}
+.ui-tip-popup.focus									{visibility:visible; opacity:1}
+.ui-tip-popup.right:before							{content:""; position:absolute; left:-7px; top:50%; margin-top:-6px; width:12px; height:12px; background-color:rgba(255,250,230,1); border-left:1px solid #ffcd56; border-bottom:1px solid #ffcd56; transform:rotate(45deg)}
+.ui-tip-popup.right.reverse:before					{left:auto; right:-7px; border:none; border-right:1px solid #ffcd56; border-top:1px solid #ffcd56}
+.ui-tip-popup.center:before							{content:""; position:absolute; left:50%; bottom:-7px; margin-left:-6px; width:12px; height:12px; background-color:rgba(255,250,230,1); border-right:1px solid #ffcd56; border-bottom:1px solid #ffcd56; transform:rotate(45deg); box-shadow:2px 0px 0px rgba(0,0,0,0.1)}
+
+.ui-tip-popup p										{position:relative; display:inline-block; padding:5px 7px 5px 6px; color:rgb(92,60,0); line-height:1.3}
+.ui-tip-popup p h5									{font-size:13.25px; font-weight:bold; color:#333}
+.ui-tip-popup.center p								{text-align:center}
+
+.ui-tip-popup.text-left	p							{text-align:left}
+.ui-tip-popup.text-center p							{text-align:center}
+.ui-tip-popup.text-right p							{text-align:right}
+
+.ui-tip-popup.gray									{background-color:#f8f8f8; border-color:#ccc}
+.ui-tip-popup.gray:before,
+.ui-tip-popup.gray.reverse:before					{background-color:#f8f8f8; border-color:#ccc}
+.ui-tip-popup.gray p								{color:#333}
+
+.ui-tip-popup.black									{background-color:#111; border-color:#111}
+.ui-tip-popup.black:before,
+.ui-tip-popup.black.reverse:before					{background-color:#111; border-color:#111}
+.ui-tip-popup.black p								{color:rgba(255,255,255,0.8)}
+
+.ui-tip-popup.red									{background-color:rgba(255,238,232,1); border-color:#ff5722}
+.ui-tip-popup.red:before,
+.ui-tip-popup.red.reverse:before					{background-color:rgba(255,238,232,1); border-color:#ff5722}
+.ui-tip-popup.red p									{color:#333}
+
+.ui-tip-popup.darkGray								{background-color:#696d7a; border-color:#696d7a}
+.ui-tip-popup.darkGray:before,
+.ui-tip-popup.darkGray.reverse:before				{background-color:#696d7a; border-color:#696d7a}
+.ui-tip-popup.darkGray p							{color:#fff}
+
+.ui-tip-popup.blue									{background-color:#e5edfd; border-color:#004fec}
+.ui-tip-popup.blue:before,
+.ui-tip-popup.blue.reverse:before					{background-color:#e5edfd; border-color:#004fec}
+.ui-tip-popup.blue p								{color:#333}
+
+
+
+
+
+/* ******** UI-FORM ******** */
+
+.ui-form table										{line-height:40px; text-align:left; white-space:nowrap}
+.ui-form table tr > *								{padding:8px 0}
+.ui-form table tr:first-child > *					{padding-top:0}
+.ui-form table tr:last-child > *					{padding-bottom:0}
+.ui-form table tr > th								{vertical-align:top; width:200px; font-weight:500}
+
+.ui-form table th > span							{display:block; line-height:1.4}
+
+.ui-form table button								{width:135px}
+.ui-form table select								{margin:0 5px; max-width:200px}
+.ui-form table input								{margin:0 5px; max-width:135px; text-align:center}
+.ui-form table label .ui-input-calendar				{margin:0 5px}
+.ui-form table input.name							{max-width:280px; text-align:left}
+.ui-form table label								{margin-left:20px}
+
+.ui-form table input.narrow							{max-width:85px}
+.ui-form table input.wide							{max-width:200px}
+
+
+.ui-form table input:first-child,
+.ui-form table button:first-child,
+.ui-form table select:first-child,
+.ui-form table label:first-child					{margin-left:0}
+
+.ui-form table .ui-table							{line-height:1.35; text-align:center}
+.ui-form table .ui-table tr > *						{padding:8px}
+.ui-form table .ui-table button						{width:auto}
+
+.ui-form .bottom									{margin-top:35px; text-align:center; font-size:0}
+.ui-form section.bottom								{margin:50px 0 15px}
+.ui-form .bottom button								{margin:0 5px; min-width:135px}
+
+.ui-popup .middle.ui-form							{padding:20px 25px}
+.ui-popup .ui-form table							{line-height:40px; text-align:left}
+.ui-popup .ui-form table tr > *						{padding:5px 0}
+.ui-popup .ui-form table tr > th					{vertical-align:top; width:125px}
+.ui-popup .ui-form .ui-select						{font-size:13.25px}
+
+
+
+
+
+/* ******** UI-STCIKY-BOX ******** */
+
+.ui-sticky-box										{height:300px; background-color:#999; border:1px solid #ccc; overflow:auto}
+.ui-sticky-box .ui-table							{background-color:white}
+.ui-sticky-box .ui-table tr							{border:none}
+.ui-sticky-box .ui-table tr > *						{border:none; white-space:nowrap !important; text-overflow:ellipsis; overflow:hidden}
+.ui-sticky-box .ui-table thead tr					{position:sticky; position:-webkit-sticky; top:0px; background-color:inherit; outline:1px solid #ccc; z-index:2}
+
+.ui-sticky-box .ui-table tr > * + *					{border-left:1px solid #ccc}
+.ui-sticky-box .ui-table tbody tr + tr				{border-top:1px solid #ccc}
+.ui-sticky-box .ui-table .empty,
+.ui-sticky-box .ui-table .empty td					{text-align:center !important}
+.ui-sticky-box .ui-table.sharp						{border-top:0}
+.ui-sticky-box .ui-table.sharp thead tr > *			{background-color:#f0f0f0; color:#333}
+
+
+
+
+
+/* ******** UI-CUTOFF ******** */
+
+.ui-cutoff											{margin:40px 0}
+.ui-cutoff div										{position:relative; margin:20px -28px; border-top:1px dashed #bbb}
+.ui-cutoff div:before								{content:""; position:absolute; left:-12px; top:-8px; width:8px; height:15px; background-color:#f2f2f2; border-top-right-radius:10px; border-bottom-right-radius:10px; border:1px solid #ccc; border-left:none}
+.ui-cutoff div:after								{content:""; position:absolute; right:-12px; top:-8px; width:8px; height:15px; background-color:#f2f2f2; border-top-left-radius:10px; border-bottom-left-radius:10px; border:1px solid #ccc; border-right:none}
+section.ui-cutoff									{margin:0; margin-top:60px}
+
+section.ui-break									{border-top:1px dashed #ccc}
+
+
+
+
+
+/* ******** UI-BADGE ******** */
+
+.ui-badge											{display:inline-block; vertical-align:middle; padding:4px 8px; border-radius:6px; line-height:1; font-size:12px; font-weight:500}
+.ui-badge.lite:before								{content:"LITE"}
+.ui-badge.pro										{background-color:rgba(31,105,252,0.1); color:#1f69fc !important}
+.ui-badge.pro:before								{content:"PRO"}
+.ui-badge.pro_plus									{background-color:rgba(121,73,255,0.1); color:#7949ff !important}
+.ui-badge.pro_plus:before							{content:"PRO+"}
+.ui-badge + .ui-badge								{margin-left:4px}
+
+.ui-badge.bg										{margin:0; border-radius:20px; color:white !important}
+.ui-badge.bg.lite									{background-color:#46c9e5}
+.ui-badge.bg.pro									{background-color:#3372f0}
+.ui-badge.bg.pro_plus								{background-color:#7551db}
+
+.ui-badge.gray										{background-color:#eee !important; color:#646464}
+.ui-badge.red										{background-color:#ffeceb !important; color:#ff5722}
+.ui-badge.green										{background-color:#e7f8f2 !important; color:#37b772}
+.ui-badge.blue										{background-color:#e6edfd !important; color:#004fec}
+.ui-badge.purple									{background-color:#eee9fb !important; color:#5326d2}
+.ui-badge.white										{border:1px solid #ccc}
+
+.ui-badge.small										{padding:3px 5px; border-radius:2px; font-size:10px}
+
+
+
+
+
+/* ******** UI-CLOCK ******** */
+
+.ui-clock											{position:absolute; left:0; top:0; margin-top:1px; padding:5px; background-color:white; border:1px solid #ccc; line-height:30px; font-size:0; opacity:0; transition:visibility 0.3s, opacity 0.3s; transfrom:translateX(-50%); z-index:16}
+.ui-clock.focus										{visibility:visible; opacity:1}
+.ui-clock > *										{display:inline-block; vertical-align:middle; font-size:13.5px}
+.ui-clock .ui-select								{padding:0 20px 0 5px; width:50px; max-width:50px; height:30px; background-position:right 4px center !important; border:none; line-height:inherit; text-align-last:center}
+.ui-clock span										{margin:0 5px}
+.ui-clock .ui-button								{margin-left:10px; width:50px; border:none; line-height:inherit}
+
+
+
+
+
+/* ******** UI-GALLERY ******** */
+
+.ui-gallery													{position:relative; width:100%; white-space:nowrap; font-size:0; visibility:hidden; user-select:none; overflow-x:hidden}
+.ui-gallery.focus											{visibility:visible}
+.ui-gallery > ul											{width:100%; height:100%; overflow:visible; box-sizing:border-box; transition:transform 0.4s}
+.ui-gallery > ul.focus										{transition:none}
+.ui-gallery > ul > li										{position:relative; display:inline-block; vertical-align:top; width:100%; height:100%; background-color:#f0f0f0; overflow:hidden}
+.ui-gallery > ul > li > img									{position:absolute; left:0; top:0; width:100%; height:100%; object-fit:cover}
+
+.ui-gallery.fade > ul > li									{position:absolute; left:0; top:0; width:100%; height:100%; visibility:hidden; opacity:0; transition:visibility 0.4s, opacity 0.4s; z-index:1}
+.ui-gallery.fade > ul > li.focus							{visibility:visible; opacity:1; z-index:2}
+
+.ui-gallery nav												{position:absolute; left:0; bottom:10px; width:100%; text-align:center; z-index:4}
+.ui-gallery nav a											{display:inline-block; vertical-align:middle; width:10px; height:10px; border-radius:100%; border:1px solid #4c8cfc; opacity:1; cursor:pointer}
+.ui-gallery nav a.focus										{background-color:#4c8cfc}
+.ui-gallery nav a + a										{margin-left:10px}
+
+
+
+/* ******** UI-COMPARE ******** */
+
+.ui-compare													{position:relative; width:100%; height:240px; background-color:#f0f0f0; user-select:none; overflow:hidden}
+.ui-compare ul li											{position:absolute; left:0; top:0; width:100%; height:100%}
+.ui-compare ul li div										{position:absolute; left:0; top:0; width:100%; height:100%; overflow:hidden}
+.ui-compare ul li img										{position:absolute; left:0; top:0; width:100%; height:100%; object-fit:cover}
+
+.ui-compare ul li:last-child								{left:50%; width:50%; border-left:2px solid white}
+.ui-compare ul li:last-child img							{left:auto; right:0; width:200%}
+.ui-compare ul li span										{position:absolute; left:0; top:50%; margin-left:-16px; margin-top:-15px; width:30px; height:30px; background-color:white; border-radius:100%; z-index:2}
+.ui-compare ul li span:before								{content:""; position:absolute; left:50%; top:50%; margin-left:2px; margin-top:-6px; width:0; height:0; border-top:6px solid transparent; border-bottom:6px solid transparent; border-left:8px solid #4c8cfc}
+.ui-compare ul li span:after								{content:""; position:absolute; left:50%; top:50%; margin-left:-10px; margin-top:-6px; width:0; height:0; border-top:6px solid transparent; border-bottom:6px solid transparent; border-right:8px solid #4c8cfc}
+
+
+
+
+/* ******** UI-CHART ******** */
+
+.ui-chart canvas											{width:100%; height:100%}

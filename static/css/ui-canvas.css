@@ -1,0 +1,159 @@
+/* ******** UI-CANVAS ******** */
+
+.ui-canvas 												{position:absolute; left:0; top:0; width:100%; height:100%; background-color:white; font-size:0; user-select:none}
+.ui-canvas > img										{position:relative; width:100%; height:100%}
+
+.ui-canvas .grid										{display:none; position:absolute; left:-1px; top:-1px; right:0; bottom:0;
+														 background-image:linear-gradient(to right, rgba(150,150,150,0.33) 1px, transparent 1px), linear-gradient(to bottom, rgba(150,150,150,0.33) 1px, transparent 1px);
+														 background-size:10px 10px; border-right:1px solid rgba(150,150,150,0.33); border-bottom:1px solid rgba(150,150,150,0.33);}
+.ui-canvas .selection									{display:none; position:absolute; background-color:rgba(33,150,243,0.33); border:1px solid rgba(33,150,243,0.66); box-sizing:border-box; z-index:2}
+.ui-canvas .grid.focus,
+.ui-canvas .selection.focus								{display:block}
+.ui-canvas .selection.focusing							{display:block; background-color:rgba(55,183,114,0.33); border:1px solid #37b772}
+
+
+
+
+/* ******** UI-CANVAS : ITEM ******** */
+
+.ui-canvas .item										{position:absolute; left:0; top:0; width:100px; height:100px; background-color:rgba(140,140,140,0.1); border:1px solid rgba(140,140,140,0.33); transition:background 0.1s, border 0.1s, outline 0.1s; box-sizing:border-box}
+.ui-canvas .item.focus									{background-color:rgba(33,150,243,0.1); border-color:#004fec; box-shadow:0 0 0 3px rgba(33,150,243,0.33); cursor:move; z-index:2}
+.ui-canvas .item > span									{display:none; position:absolute; right:-1px; bottom:-1px; width:0; height:0; border-bottom:10px solid #004fec; border-left:10px solid transparent; cursor:nw-resize; z-index:4}
+.ui-canvas .item.focus > span							{display:block}
+.ui-canvas.multiple .item > span						{display:none}
+
+.ui-canvas .item > div									{position:absolute; left:0; top:0; right:0; bottom:0; overflow:hidden}
+.ui-canvas .item .iframe:after							{content:""; position:absolute; left:0; top:0; right:0; bottom:0}
+
+.ui-canvas .item img,
+.ui-canvas .item iframe									{display:none; position:absolute; left:0; top:0; width:100%; height:100%; object-fit:cover}
+.ui-canvas .item img.focus,
+.ui-canvas .item iframe.focus							{display:block}
+.ui-canvas .item button									{position:absolute; left:0; top:0; right:0; bottom:0; background:transparent; border:none}
+.ui-canvas .item button img + img						{visibility:hidden; opacity:0; transition:visibility 0.2s, opacity 0.2s}
+.ui-canvas .item button:active img + img				{visibility:visible; opacity:1}
+.ui-canvas .item label									{position:absolute; left:0; top:0; padding:0 5px; background-color:black; white-space:nowrap; line-height:16px; font-size:8px; color:white; opacity:0.66}
+
+.ui-canvas .item.focus label							{background-color:#004fec; opacity:1}
+
+.ui-canvas .item p										{display:none; line-height:1.4; font-size:3vh; font-weight:600}
+.ui-canvas .item .text p								{display:block; white-space:nowrap; text-overflow:ellipsis; overflow:hidden}
+.ui-canvas .item .textarea p							{display:block; font-weight:500}
+
+.ui-canvas .item p.larger								{font-size:5vh}
+.ui-canvas .item p.large								{font-size:4vh}
+.ui-canvas .item p.medium								{font-size:3vh}
+.ui-canvas .item p.small								{font-size:2.5vh}
+.ui-canvas .item p.smaller								{font-size:2vh}
+.ui-canvas .item p.white								{color:white}
+.ui-canvas .item p.black								{color:#111}
+
+
+
+
+/* ******** EDITOR ******** */
+
+.editor												{max-width:1333px}
+.editor > dl										{width:100%; height:600px}
+.editor > dl > * > div								{height:100%; box-sizing:border-box}
+.editor > dl > dt									{padding-right:0; width:75%}
+.editor > dl > dt > div								{padding:15px; background-color:#646464}
+.editor > dl > dd									{padding-left:0; width:25%}
+
+.editor .device										{position:relative; padding-bottom:75%; background-color:#111; border-radius:20px; font-size:0; overflow:hidden}
+.editor .ui-canvas									{background-color:#646464}
+
+
+
+
+/* ******** EDITOR-INFO ******** */
+
+.editor-info										{position:relative; background-color:#3c3f41; font-size:12.5px; color:#bbb}
+.editor-info .tab > div								{box-sizing:border-box}
+
+.editor-info .top									{position:absolute; left:0; top:8px; width:100%; height:40px}
+
+.editor-info .middle								{position:absolute; left:0; top:40px; right:0; bottom:55px; padding:15px 20px; overflow-y:auto}
+.editor-info .middle li								{margin-bottom:20px}
+.editor-info .middle li:last-child					{margin-bottom:0}
+
+.editor-info .bottom								{position:absolute; left:0; bottom:4px; width:100%; height:50px; border-top:1px solid #555; line-height:50px; text-align:center; font-size:0; box-sizing:border-box}
+.editor-info .bottom .left							{float:left}
+.editor-info .bottom .right							{float:right}
+.editor-info .bottom button							{display:none; width:75px; font-size:12.5px}
+.editor-info .bottom button + button				{margin-left:10px}
+.editor-info .bottom button:disabled				{opacity:0.5}
+.editor-info .bottom button:hover:not([disabled])	{background-color:#365880; border-color:#3080c0}
+
+
+
+.editor-info table									{text-align:left; font-size:0; table-layout:fixed}
+.editor-info table th								{padding-right:15px; width:25%; text-align:right; font-weight:400; font-size:12.5px}
+.editor-info table td								{padding:5px 0}
+.editor-info table td dl dt							{padding-right:5px}
+.editor-info table td dl dd							{padding-left:5px}
+
+.editor-info table td dl + dl						{margin-top:10px}
+
+.editor-info .ui-input-file							{display:block}
+.editor-info .ui-input-file span,
+.editor-info input,
+.editor-info select,
+.editor-info button									{display:inline-block; vertical-align:middle; padding:0 8px; width:100%; max-width:100%; height:30px; background:#45494a; border-color:#646464; line-height:30px; font-size:12.5px; color:#bbb !important}
+.editor-info select									{padding-right:25px}
+.editor-info select optgroup,
+.editor-info select option							{background-color:#45494a; color:#bbb !important}
+.editor-info select > option:first-child			{display:none}
+.editor-info textarea								{padding:8px; width:100%; height:100px; background-color:#45494a; border-color:#646464; font-size:12.5px; box-sizing:border-box}
+
+.editor-info ::-webkit-input-placeholder			{color:#777}
+.editor-info ::-moz-placeholder 					{color:#777; opacity:1}
+.editor-info :-moz-placeholder 						{color:#777; opacity:1}
+.editor-info :-ms-input-placeholder					{color:#777}
+
+.editor-info .select								{position:relative; display:block}
+.editor-info .select:after							{content:"▼"; position:absolute; right:0; width:25px; line-height:30px; text-align:center; font-size:10px}
+.editor-info .ui-input-file span					{padding-right:25px}
+.editor-info .ui-input-file span:after				{content:"🖿"; position:absolute; right:0; width:25px; text-align:center; font-size:12px}
+
+.editor-info input:focus,
+.editor-info select:focus,
+.editor-info button:focus,
+.editor-info textarea:focus							{border-color:#3080c0 !important}
+
+
+
+.editor-info .hidden											{display:none}
+.editor-info.create tr.create,
+.editor-info.update tr.update,
+.editor-info .image tr.image,
+.editor-info .iframe tr.iframe,
+.editor-info .button tr.button,
+.editor-info .text tr.text,
+.editor-info .textarea tr.textarea,
+.editor-info .locker tr.locker									{display:table-row}
+
+.editor-info.create li.create,
+.editor-info.update li.update,
+.editor-info .etc li.etc,
+.editor-info .image li.image,
+.editor-info .button li.button									{display:block}
+
+
+.editor-info.create button.create,
+.editor-info.update button.update								{display:inline-block}
+.editor-info.update select[name='type'] option[value='']		{display:none}
+.editor-info.multiple .middle li:first-child					{display:none}
+.editor-info.multiple .bottom button[data-event='create']		{display:none}
+.editor-info.reserved .reserved									{display:none !important}
+
+.editor-info .ui-tab											{margin:0}
+.editor-info .ui-tab li label div								{border:none !important; border-bottom:1px solid #555 !important}
+.editor-info .ui-tab li label input + div						{background-color:#3c3f41}
+.editor-info .ui-tab li label input:checked + div:before		{left:0; right:0; width:100%; height:3px; background-color:#3377bb}
+
+.editor-info label												{font-size:12px}
+.editor-info .ui-input-checkbox									{padding-left:24px}
+.editor-info .ui-input-checkbox input[type=checkbox] + span		{width:15px; height:15px; background-color:#45494a; border-color:#646464}
+.editor-info .ui-input-checkbox input:checked + span			{opacity:0.66}
+

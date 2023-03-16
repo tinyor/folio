@@ -1,0 +1,742 @@
+<!doctype html>
+<html>
+<head>
+	<title>Tinyor</title>
+	
+	<meta property="og:url" content=""/>
+	<meta property="og:title" content=""/>
+	<meta property="og:description" content=""/>
+	<meta property="og:image" content=""/>
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=EDGE"/>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<meta name="author" content=""/>
+	<meta name="google" value="notranslate"/>
+	<meta name="description" content=""/>
+	<meta name="format-detection" content="telephone=no, address=no, email=no"/>
+	
+	<script type="text/javascript" src="./static/js/common.js"></script>
+	<script type="text/javascript" src="./static/js/ui.js"></script>	
+	<script type="text/javascript" src="./static/js/ui-canvas.js"></script>
+	
+	<link rel="icon" href="./favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="./static/css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="./static/css/ui.css"/>
+	<link type="text/css" rel="stylesheet" href="./static/css/ui-canvas.css">
+	
+	<style type="text/css">
+section														{display:block; margin:0 auto; max-width:1024px}
+section .bottom												{margin-top:25px}
+section .bottom button										{display:block; margin:0 auto; width:150px}
+
+.ui-table													{display:none; table-layout:fixed}
+.ui-table.focus												{display:table}
+.ui-table tr.hidden											{display:none}
+
+.ui-table td												{position:relative}
+.ui-table tbody tr:nth-child(even)							{background-color:rgba(0,0,0,0.05)}
+.ui-table tfoot												{background-color:#e0e0e0; font-weight:500}
+.ui-table tfoot tr											{border-top:4px double #ccc}
+.ui-table td[contenteditable]								{padding-right:25px; background:url(./static/img/icon/icon_pencil_gray.png) no-repeat right 5px center / 12px}
+.ui-table td.modify											{background-color:#e1f4ea}
+.ui-table td[contenteditable].modify						{background-image:url("./static/img/icon/icon_pencil_green.png")}
+.ui-table tr:nth-child(even) td.modify						{background-color:#deece5}
+
+
+.ui-table tr td[contenteditable]:focus						{position:relative; background-color:rgba(33,150,243,0.1) !important; background-image:url("./static/img/icon/icon_pencil_blue.png"); box-shadow:inset 0 0 1px 1px #004fec; outline:none; /*outline:1px solid #004fec;*/ z-index:2}
+
+.ui-table td.title											{text-align:left}
+.ui-table td.currency,
+.ui-table td.number											{text-align:right; padding-right:calc(10px + 1em)}
+.ui-table td.number:before									{content:"회"; position:absolute; right:10px}
+.ui-table td.currency:before								{content:"원"; position:absolute; right:10px}
+
+.ui-table td.unit											{padding-right:calc(25px + 1em)}
+.ui-table td.unit.number:before,
+.ui-table td.unit.currency:before							{right:25px}
+
+.ui-table.sort thead td										{position:relative; padding-right:18px; background:url(./static/img/icon/icon_sort_both.png) no-repeat right center; cursor:pointer}
+.ui-table.sort thead td:focus								{box-shadow:inset 0 0 1px 1px #004fec; outline:none;/*outline:1px solid #004fec box-shadow:0 0 0 3px rgba(33,150,243,0.3)*/}
+.ui-table.sort thead td.asc 								{background-image:url(./static/img/icon/icon_sort_asc.png)}
+.ui-table.sort thead td.desc 								{background-image:url(./static/img/icon/icon_sort_desc.png)}
+.ui-table.dark.sort thead td								{background-image:url(./static/img/icon/icon_sort_both_dark.png)}
+.ui-table.dark.sort thead td.asc 							{background-image:url(./static/img/icon/icon_sort_asc_dark.png)}
+.ui-table.dark.sort thead td.desc 							{background-image:url(./static/img/icon/icon_sort_desc_dark.png)}
+
+.ui-table.drop tbody tr:nth-child(odd) + tr					{display:none}
+.ui-table.drop tbody tr:nth-child(odd).focus + tr			{display:table-row}
+
+.ui-table-wrap nav											{display:block; margin:25px auto; line-height:35px; text-align:center; font-size:0}
+.ui-table-wrap nav.hidden									{display:none}
+.ui-table-wrap nav a										{display:inline-block; vertical-align:top; width:35px; height:35px; font-size:13px}
+.ui-table-wrap nav a.focus									{background-color:#004fec; color:white}
+
+.ui-table-wrap > div										{display:inline-block; margin-bottom:10px; height:35px; line-height:35px}
+.ui-table-wrap > .filter									{position:relative; float:right}
+.ui-table-wrap > .filter input								{padding-right:35px; background:url(./static/img/icon/icon_zoom_black.png) no-repeat right 10px center}
+	</style>
+</head>
+<body>
+	<main>
+		<section>
+			<div class="top">
+				<h2 class="ui-title">TABLE : EDITABLE PROTOTYPE</h2>
+			</div>
+			<div class="middle">
+				<table class="ui-table dark" data-filter="false" data-drop="false" data-sort="false" data-edit="true" data-page="true" data-page-length="10" data-update="doUpdate">
+					<colgroup><col width="7.5%"><col width="10%"><col width="30%"><col width="10%"><col width="12.5%"><col width="10%"><col width="20%"></colgroup>
+					<thead>
+						<tr>
+							<td data-name="" data-type="number">NO.</td>
+							<td data-name="" data-type="text">CATEGORY</td>
+							<td data-name="" data-type="text">TITLE</td>
+							<td data-name="" data-type="currency">CURRENCY</td>
+							<td data-name="" data-type="number">NUMBER</td>
+							<td data-name="" data-type="currency">CURRENCY</td>
+							<td data-name="" data-type="text">MEMO</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr><td>1</td><td>Apple</td><td class="title">Lorem ipsum dolor sit</td><td class="currency unit" contenteditable="true">1,000</td><td class="number unit" contenteditable="true">5</td><td class="currency">=?</td><td class="memo" contenteditable="true"></td></tr>
+						<tr><td>2</td><td>Banana</td><td class="title">Lorem ipsum dolor sit amet</td><td class="currency unit" contenteditable="true">3,000</td><td class="number unit" contenteditable="true">2</td><td class="currency">=?</td><td class="memo" contenteditable="true"></td></tr>
+						<tr><td>3</td><td>Orange</td><td class="title">Lorem ipsum dolor</td><td class="currency unit" contenteditable="true">1,500</td><td class="number unit" contenteditable="true">10</td><td class="currency">=?</td><td class="memo" contenteditable="true"></td></tr>
+					</tbody>
+					<tfoot>
+						<tr><td colspan="3">TOTAL</td><td class="currency unit" data-index="4"></td><td class="number unit" data-index="5"></td><td class="currency" data-index="6"></td><td></td></tr>
+					</tfoot>
+				</table>
+			</div>
+			<div class="bottom">
+				<button class="ui-button" onclick="doSubmit()">SUBMIT</button>
+			</div>
+		</section>
+	</main>	
+</body>
+<script type="text/javascript">
+	
+	function doSubmit() {
+		const table = document.querySelector("main table");
+		let modifiedList = [];
+		const headList = table.ui.headList;
+		table.ui.data.forEach((item, index) => {
+			let isModify = false;
+			const detail = [];
+			item.cell.forEach((item, index) => {
+				if(item.isModify) {
+					isModify = true;
+					const type = headList[index].type;
+					const unit = (type == "currency") ? "원" : "회";
+					const beforeValue = (type == "text") ? item.beforeValue || "(없음)" : getComma(item.beforeValue) + unit;
+					const value = (type == "text") ? item.value || "(없음)" :  getComma(item.value) + unit;
+					detail.push(`◾ [${index + 1}칸] ${beforeValue} → ${value}`);
+				}
+			});
+			if(isModify) {
+				const index = item.cell[0].value;
+				modifiedList.push(`
+					${index}번째 줄 데이터가 변경되었습니다.<br>
+					${detail.join("<br>")}
+				`);
+			}
+		});
+		modifiedList = (modifiedList.length == 0) ? "변경 내용이 없습니다." : modifiedList.join("<br><br>");
+
+		uiPopup({
+			template : `
+				<div class="tiny">
+					<div class="top">
+						<h2>테이블 수정 내역<a data-event="close"></a></h2>
+					</div>
+					<div class="middle" style="height:200px; overflow-y:auto">
+						${modifiedList}
+					</div>
+					<div class="bottom">
+						<button class="ui-button" data-event="close">닫기</button>
+					</div>
+				</div>
+			`,
+			event : {
+				click : {
+					close : function() {
+						uiPopup();
+					}
+				}
+			}
+		});
+	}
+
+	function doUpdate(cellList) {
+		return cellList[3].value * cellList[4].value;
+	}
+
+	function uiTable(container, option) {
+		if(!container) container = document;
+
+		// 유틸리티 함수
+		const getNumber = (value) => {
+			return (value) ? Number(String(value).replace(/[^0-9.-]/gi, "")) : 0;
+		};
+		const getNumberLength = (value) => {
+			return (value) ? value.replace(/[^0-9]/g, "").length : 0;
+		};
+		const getSignLength = (value) => {
+			return (value) ? value.replace(/[^,-]/g, "").length : 0;
+		};
+		const setSelection = (node, offset) => {
+			if(node.childNodes.length == 0) return;
+			const selection = window.getSelection();
+			const range = selection.getRangeAt(0);
+			const length = node.textContent.length;
+			if(offset > length) offset = length;
+			else if(offset < 0) offset = 0;
+			range.setStart(node.childNodes[0], offset) ;
+			selection.removeAllRanges();
+			selection.addRange(range);
+		};
+
+		// 테이블 풋터 업데이트
+		const updateFoot = (table) => {
+			const data = table.ui.data;
+			const tfoot = table.tFoot;
+			if(!data || !tfoot) return;
+			const td = tfoot.querySelectorAll("td[data-index]");
+			td.forEach(item => {
+				const index = Number(item.getAttribute("data-index")) - 1;
+				if(index > 0) {
+					let sum = 0;
+					data.forEach(item => {
+						sum += item.cell[index].value;
+					});
+					item.innerHTML = getComma(sum);
+				}
+			});
+		};
+
+		// 테이블 바디 업데이트
+		const updateBody = (table, isEdit) => {
+			const callback = table.ui.event.update;
+			const start = table.ui.page.start;
+			const end = table.ui.page.end;
+			const dataList = (isEdit) ? table.ui.data.slice(start, end + 1) : table.ui.data;
+
+			dataList.forEach(item => {
+				const cellList = item.cell;
+				cellList.forEach(item => {
+					const isFormula = item.isFormula;
+					if(isFormula) {
+						let value = 0;
+						if(item.text == "?") {
+							value = (typeof callback == "function") ? callback(cellList) : 0;
+						} else {
+							const numberList = item.text.split(/\+|\-|\*|\//);
+							const symbolList = item.text.replace(/[^\+\-\*\/]/g, "").split("");
+							const array = [];
+							numberList.forEach((item, index) => {
+								const value = (!isNumber(item)) ? cellList[getNumber(item) - 1].value : getNumber(item);
+								const symbol = symbolList[index]
+								array.push(value);
+								if(symbol) array.push(symbol);
+							});
+							value = eval(array.join(""));
+						}
+						if(item.value != value) {
+							item.value = value;
+							item.td.innerHTML = getComma(value);
+						}
+					}
+				});
+			});
+		};
+
+		// 페이징 처리
+		const getPagination = (pageIndex, pageLength, paginationLength) => {
+			if(paginationLength % 2 == 0) paginationLength++;
+
+			const navList = [];
+			if(pageLength < paginationLength) {
+				for(let i = 1; i <= pageLength; i++)
+					navList.push(i);
+			} else {
+				const j = parseInt(paginationLength / 2);
+
+				navList.push(1);
+				let start = pageIndex - j + 1;
+				if(start < 2) start = 2;
+				let end = pageIndex + j - 1;
+				if(end > pageLength - 1) end = pageLength - 1;
+
+				if(pageLength - paginationLength + j <= start)
+					start = pageLength - paginationLength + j - 1;
+				if(end < paginationLength) end = paginationLength - 1;
+
+				for(let i = start; i <= end; i++) {
+					let number = i;
+					if(i == start && i >= j) number = "...";
+					if(i == end && i <= pageLength - j + 1) number = "...";
+					navList.push(number);
+				}
+				navList.push(pageLength);
+			}
+
+			const nav = document.createElement("nav");
+			navList.forEach(item => {
+				const a = document.createElement("a");
+				if(item == pageIndex) a.className = "focus";
+				if(item == "...") a.disabled = true;
+				else a.setAttribute("data-index", item);
+				a.innerHTML = item;
+				nav.appendChild(a);
+			});
+			return nav;
+		};
+
+		const setPagination = (table, pageIndex) => {
+			const dataLength = table.ui.data.length;
+			let pageLength = table.ui.page.length;
+			pageLength = Math.ceil(dataLength / pageLength);
+			const paginationLength = table.ui.pagination.length;
+			const oldNav = table.parentNode.querySelector("nav");
+			const newNav = getPagination(pageIndex, pageLength, paginationLength);
+			newNav.querySelectorAll("a").forEach(item => {
+				item.onclick = function() {
+					const pageIndex = Number(this.getAttribute("data-index")) || 1;
+					drawTable(table, pageIndex, undefined, true);
+				};
+			});
+			if(pageLength == 1)
+				newNav.classList.add("hidden");
+			else
+				newNav.classList.remove("hidden");
+			if(oldNav)
+				table.parentNode.replaceChild(newNav, oldNav);
+			else
+				table.parentNode.insertBefore(newNav, table.nextElementSibling);
+		};
+
+		// 테이블 드로잉
+		const drawTable = (table, pageIndex, sortIndex, isPagination) => {
+			const isPage = table.ui.isPage;
+			const isDrop = table.ui.isDrop;
+			const node = table.querySelector("tbody");
+			const cloneNode = node.cloneNode(false);
+			node.parentNode.replaceChild(cloneNode, node);
+
+			const dataList = table.ui.data = getTableData(table, sortIndex);
+			const pageLength = table.ui.page.length;
+			const dataLength = dataList.length;
+
+			let start = table.ui.page.start = (isPage) ? (pageIndex - 1) * pageLength : 0;
+			let end = table.ui.page.end = (isPage) ? start + pageLength - 1 : dataLength - 1;
+			if(end > dataLength - 1) end = dataLength - 1;
+
+			if(dataLength > 0) {
+				for(let i = start; i <= end; i++) {
+					cloneNode.appendChild(dataList[i].node);
+					if(isDrop)
+						cloneNode.appendChild(dataList[i].dropNode);
+				}
+			} else {
+				const colspan = table.ui.headList.length;
+				cloneNode.innerHTML = `
+				<tr><td class="empty" colspan="${colspan}">데이터가 없습니다.</td></tr>
+			`;
+			}
+			if(isPage) setPagination(table, pageIndex);
+			updateBody(table);
+			if(!isPagination) {
+				updateFoot(table);
+			}
+		};
+
+		// 테이블 데이터
+		const getTableData = (table, sortIndex) => {
+			const isSort = table.ui.isSort;
+			const isFilter = table.ui.isFilter;
+			let data = table.ui.rawData;
+			if(isFilter) {
+				const value = table.ui.filter.value;
+				if(value) {
+					data = data.filter(item => {
+						return item.cell.some(item => {
+							return (item.text.indexOf(value) > -1);
+						});
+					});
+				}
+			}
+			if(sortIndex != undefined) {
+				let sortType = table.ui.sort.type;
+				const beforeSortIndex = table.ui.sort.index;
+				if(beforeSortIndex == sortIndex) {
+					sortType = (sortType) ? (sortType == "asc") ? "desc" : "asc" : "asc";
+				} else {
+					sortType = "asc";
+				}
+				table.ui.page.index = 1;
+				table.ui.sort.index = sortIndex;
+				table.ui.sort.type = sortType;
+
+				const td = table.ui.headList;
+				td.forEach(item => {
+					item.node.classList.remove("asc");
+					item.node.classList.remove("desc");
+				});
+				td[sortIndex].node.classList.add(sortType);
+
+				data = data.sort(function(a, b) {
+					const aText = a.cell[sortIndex].text.toLowerCase();
+					const bText = b.cell[sortIndex].text.toLowerCase();
+					const aNumber = a.cell[sortIndex].value;
+					const bNumber = b.cell[sortIndex].value;
+					a = (aNumber == bNumber) ? aText : aNumber;
+					b = (aNumber == bNumber) ? bText : bNumber;
+					if(sortType == "asc") {
+						return (a < b) ? -1 : (a > b) ? 1 : 0;
+					} else {
+						return (a < b) ? 1 : (a > b) ? -1 : 0;
+					}
+				});
+			}
+			return data;
+		};
+
+
+
+
+
+		// ******* RENDER *******
+		const tableList = container.querySelectorAll(".ui-table");
+		tableList.forEach(table => {
+			// 1단계. 테이블의 정보를 셋팅한다.
+			const setInformation = () => {
+				const isDrop = (table.getAttribute("data-drop") == "true");
+				const isPage = (table.getAttribute("data-page") == "true");
+				const isSort = (table.getAttribute("data-sort") == "true");
+				const isEdit = (table.getAttribute("data-edit") == "true");
+				const isFilter = (table.getAttribute("data-filter") == "true");
+				const pageLength = Number(table.getAttribute("data-page-length"));
+				const tr = table.querySelector("tbody").rows;
+
+				const getHeadList = () => {
+					const td = Array.from(table.tHead.rows[table.tHead.rows.length - 1].cells);
+					return td.map(item => {
+						const type = item.getAttribute("data-type");
+						return {
+							type : type,
+							node : item
+						};
+					}) || [];
+				};
+
+				table.ui = {
+					headList : getHeadList(),
+					data : [],
+					rawData : [],
+					sort : {
+						index : 0,
+						type : ""
+					},
+					filter : {
+						value : ""
+					},
+					page : {
+						start : 0,
+						end : 0,
+						index : 1,
+						length : pageLength || 7,
+					},
+					pagination : {
+						length : 7
+					},
+					event : {
+						update : eval(table.getAttribute("data-update"))
+					},
+					isPage : isPage,
+					isDrop : isDrop,
+					isSort : isSort,
+					isEdit : isEdit,
+					isFilter : isFilter
+				};
+			};
+
+			// 2단계. 테이블 태그 컨테이너를 만든다.
+			const setContainer = () => {
+				const div = document.createElement("div");
+				const nav = document.createElement("nav");
+				div.className = "ui-table-wrap";
+				table.parentNode.insertBefore(div, table);
+				div.appendChild(table);
+				const container = table.ui.container = div;
+			};
+
+			// 3단계. 태그 정보를 데이터화 시킨다.
+			const setTagData = () => {
+				const isDrop = table.ui.isDrop;
+				const typeList = table.ui.headList;
+				const rowList = [];
+				const tr = Array.from(table.tBodies[0].rows);
+				for(let i = 0; i < tr.length; i++) {
+					const index = (isDrop) ? parseInt(i / 2) : i;
+					const oddNode = tr[i].cloneNode(true);
+					const evenNode = (isDrop) ? tr[i + 1].cloneNode(true) : undefined;
+					oddNode.index = index;
+					tr[i].parentNode.removeChild(tr[i]);
+					if(isDrop) {
+						evenNode.index = index;
+						tr[i + 1].parentNode.removeChild(tr[i + 1]);
+						i++;
+					}
+					const colList = [];
+					const td = Array.from(oddNode.cells);
+					td.forEach((item, index) => {
+						const type = typeList[index].type;
+						let value = item.innerHTML.replace(/\s/g, "");
+						const isFormula = (value.substr(0, 1) == "=");
+						value = (isFormula) ? "" : (type == "text") ? "" : getNumber(value);
+						colList.push({
+							td : item,
+							text : (isFormula) ? item.innerHTML.substr(1) : item.innerHTML,
+							value : value,
+							beforeValue : value,
+							isModify : false,
+							isFormula : isFormula
+						});
+					});
+					rowList.push({
+						index : index,
+						cell : colList,
+						node : oddNode,
+						dropNode : evenNode
+					});
+				}
+				table.ui.data = table.ui.rawData = rowList;
+			}
+
+			// 4단계. 이벤트를 등록한다.
+			const setEvent = () => {
+				const headList = table.ui.headList;
+				const dataList = table.ui.data;
+
+				// 1) 정렬 관련 셋팅
+				const setSort = () => {
+					table.classList.add("sort");
+					headList.forEach((item, index) => {
+						item = item.node;
+						item.tabIndex = 0;
+						item.addEventListener("click", function() {
+							drawTable(table, 1, index);
+						});
+					});
+				};
+
+				// 2) 드롭 관련 셋팅
+				const setDrop = () => {
+					table.classList.add("drop");
+					dataList.forEach(item => {
+						const node = item.node;
+						node.addEventListener("click", function() {
+							node.classList.toggle("focus");
+						});
+					});
+				};
+
+				// 3) 편집 관련 셋팅
+				const setEdit = () => {
+					table.classList.add("edit");
+					const getDataIndex = (index) => {
+						for(let i = 0; i < dataList.length; i++)
+							if(dataList[i].index == index) return i;
+						return 0;
+					};
+					dataList.forEach(item => {
+						const y = item.index;
+						const td = Array.from(item.node.cells);
+						td.forEach((item, x) => {
+							if(item.getAttribute("contenteditable")) {
+								item.addEventListener("paste", function() {
+									this.value = getComma(getNumber(this.value));
+								});
+								item.addEventListener("focus", function() {
+									const type = headList[x].type;
+									const text = this.innerHTML;
+									const value = (type == "text") ? text : getNumber(text) || 0;
+									this.beforeValue = value;
+									if(type != "text")
+										this.innerHTML = (text) ? getComma(value) : "";
+								});
+								item.addEventListener("blur", function() {
+									const type = headList[x].type;
+									const text = this.innerHTML;
+									const value = (type == "text") ? text : getNumber(text) || 0;
+									if(type != "text")
+										this.innerHTML = (text) ? getComma(value) : "0";
+
+									const index = getDataIndex(y);
+									const cell = dataList[index].cell[x];
+
+									if(this.beforeValue != value) {
+										cell.value = value;
+										if(cell.beforeValue == value) {
+											item.classList.remove("modify");
+											cell.isModify = false;
+										} else {
+											item.classList.add("modify");
+											cell.isModify = true;
+										}
+										updateBody(table, true);
+										updateFoot(table);
+									}
+								});
+								item.addEventListener("keydown", function(event) {
+									const minX = 0;
+									const maxX = table.ui.headList.length - 1;
+									const minY = table.ui.page.start;
+									const maxY = table.ui.page.end;
+
+									const keyCode = event.keyCode || event.which;
+									/*
+									console.log(`
+										minX : ${minX}
+										maxX : ${maxX}
+										minY : ${minY}
+										maxY : ${maxY}
+										keyCode : ${keyCode}
+									`);
+									*/
+									const isFunction = event.ctrlKey || event.altkey || event.shiftKey || event.metaKey;
+									const isNumber = ((48 <= keyCode && keyCode <= 57) || (96 <= keyCode && keyCode <= 105));
+									const type = headList[x].type;
+									const isControl = (keyCode < 48 && keyCode != 32);
+
+									const selection = window.getSelection();
+									const range = selection.getRangeAt(0);
+									const selectionStart = range.startOffset || 0;
+									const selectionEnd = range.endOffset || 0;
+									const selectionLength = selectionEnd - selectionStart;
+									const text = this.innerHTML;
+									const isMinus = ((keyCode == 109 || keyCode == 189) && (selectionEnd == 0 || selectionLength == text.length));
+									const isLeft = (selectionStart == 0 && selectionEnd == 0);
+									const isRight = (selectionStart == text.length && selectionEnd == text.length);
+
+									item.event = {
+										type : type,
+										keyCode : keyCode,
+										isControl : isControl,
+										isFunction : isFunction,
+										selectionStart : selectionStart,
+										selectionEnd : selectionEnd,
+										text : text,
+									};
+
+									if(isFunction) return;
+									if(keyCode == 27) item.blur();
+									if(keyCode == 13 || (isLeft && keyCode == 37) || keyCode == 38 || (isRight && keyCode == 39) || keyCode == 40) {
+										let isFocus = true;
+										const setFocus = (cell, direction, value) => {
+											if(direction == "x") {
+												const newX = x + value;
+												if(!(minX <= newX && newX <= maxX)) return false;
+												cell = dataList[y].cell[newX].td;
+											} else {
+												const index = getDataIndex(y);
+												const newY = index + value;
+												if(!(minY <= newY && newY <= maxY && cell)) return false;
+												cell = dataList[newY].cell[x].td;
+											}
+											if(!cell || cell.parentNode.classList.contains("hidden")) return false;
+											if(cell.getAttribute("contenteditable")) {
+												cell.focus();
+												setSelection(cell, cell.innerHTML.length)
+											} else {
+												setFocus(cell, direction, value + value);
+											}
+											return true;
+										};
+										// 방향키 : 아래
+										if(keyCode == 13 || keyCode == 40)
+											isFocus = setFocus(item, "y", 1);
+
+										// 방향키 : 위
+										if(keyCode == 38)
+											isFocus = setFocus(item, "y", -1);
+
+										// 방향키 : 오른쪽
+										if(keyCode == 39)
+											isFocus = setFocus(item, "x", 1);
+
+										// 방향키 : 왼쪽
+										if(keyCode == 37)
+											isFocus = setFocus(item, "x", -1);
+
+										item.event = undefined;
+										if(!isFocus && keyCode == 13) item.blur();
+									}
+									if(!item.event || (type == "number" && !(isMinus || isNumber || isControl))) {
+										event.preventDefault();
+										event.returnValue = false;
+										return;
+									}
+								});
+								item.addEventListener("keyup", function(event) {
+									const info = item.event;
+									if(!info || info.type == "text") return;
+
+									const text = (this.textContent == "-") ? "-" : getComma(getNumber(this.textContent));
+									const numberLength = getNumberLength(text) - getNumberLength(info.text);
+									const signLength = getSignLength(text) - getSignLength(info.text);
+									if(!text || text.substr(0, 1) == "0") return;
+									if((info.isControl) && text.length == info.text.length) return;
+									this.innerHTML = text;
+									const number = numberLength + signLength + ((info.keyCode == 46) ? 1 : 0);
+									const offset = info.selectionEnd + number;
+									if(!info.isFunction) setSelection(this, offset);
+								});
+							}
+						});
+					});
+				};
+
+				// 4) 필터 관련 셋팅
+				const setFilter = () => {
+					const div = document.createElement("div");
+					div.className = "filter";
+					div.innerHTML = `<input class="ui-input" name="filter" type="text">`;
+					table.parentNode.insertBefore(div, table);
+
+					const input = div.querySelector("input");
+					input.addEventListener("keypress", function(event) {
+						const keyCode = event.keyCode || event.which;
+						if(keyCode == 13) {
+							const value = this.value.trim();
+							if(value && value.length < 2) {
+								alert("검색어를 2자 이상 입력해 주세요.");
+								return false;
+							}
+							table.ui.filter.value = value;
+							drawTable(table, 1);
+						}
+					});
+					input.addEventListener("change", function() {
+						table.ui.filter.value = this.value.trim();
+						drawTable(table, 1);
+					});
+				};
+
+				if(table.ui.isSort) setSort();
+				if(table.ui.isDrop) setDrop();
+				if(table.ui.isEdit) setEdit();
+				if(table.ui.isFilter) setFilter();
+			};
+
+			setInformation();
+			setContainer();
+			setTagData();
+			setEvent();
+
+			drawTable(table, 1);
+			table.classList.add("focus");
+		});
+	};
+</script>
+</html>

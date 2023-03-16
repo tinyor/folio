@@ -1,0 +1,484 @@
+<!doctype html>
+<html>
+<head>
+	<title>Tinyor</title>
+	
+	<meta property="og:url" content=""/>
+	<meta property="og:title" content=""/>
+	<meta property="og:description" content=""/>
+	<meta property="og:image" content=""/>
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=EDGE"/>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<meta name="author" content=""/>
+	<meta name="google" value="notranslate"/>
+	<meta name="description" content=""/>
+	<meta name="format-detection" content="telephone=no, address=no, email=no"/>
+	
+	<script type="text/javascript" src="./static/js/common.js"></script>
+	<script type="text/javascript" src="./static/js/ui.js"></script>	
+	<script type="text/javascript" src="./static/js/ui-canvas.js"></script>
+	
+	<link rel="icon" href="./favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="./static/css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="./static/css/ui.css"/>
+	<link type="text/css" rel="stylesheet" href="./static/css/ui-canvas.css">
+	
+	<style type="text/css">
+.editor > dl								{}
+.editor > dl > dt							{outline:1px solid #ccc; border-right:none}
+.editor > dl > dt > div						{padding:0; overflow:auto}
+.editor > dl > dd							{}
+
+.editor .device								{display:table; padding:0; width:100%; height:100%; background-color:#646464; border-radius:0}
+.editor .device > div						{display:table-cell; width:100%; height:100%; vertical-align:middle; text-align:center}
+.editor .ui-canvas							{position:relative; display:inline-block; vertical-align:middle; background-color:white}
+
+.ui-canvas .item 							{background-color:#ccc; border:1px solid #aaa; white-space:nowrap; font-size:12.5px; color:white; overflow:hidden}
+.ui-canvas .item.focus						{background-color:#ccc}
+.ui-canvas .item h2							{position:absolute; left:50%; top:50%; font-size:20px; font-weight:bold; color:white; transform:translate(-50%,-50%)}
+
+.ui-canvas .item.left h2					{transform:translate(-50%,-50%) rotate(-90deg)}
+.ui-canvas .item.right h2					{transform:translate(-50%,-50%) rotate(90deg)}
+.ui-canvas .item.bottom h2					{transform:translate(-50%,-50%) rotate(-180deg)}
+.ui-canvas .item.red h2						{text-shadow:-1px -1px 1px #ff5722, 1px -1px 1px #ff5722, -1px 1px 1px #ff5722, 1px 1px 1px #ff5722}
+.ui-canvas .item.blue h2					{text-stroke:2px #2196f3; -webkit-text-stroke:2px #2196f3}
+.ui-canvas .item.text						{background-color:transparent}
+.ui-canvas .item.text h2					{color:#333}
+
+.editor-info table .copy					{margin-left:-5px}
+.editor-info table .copy td					{padding:0; width:33.33%}
+.editor-info table .copy td:nth-child(2)	{padding:2px 4px}
+.editor-info table .copy button				{padding:0}
+.editor-info.multiple .multiple				{display:none !important}		
+	</style>
+</head>
+<body>
+		<main>
+		<div id="editor" class="editor">
+			<dl>
+				<dt>
+					<div>
+						<div class="device">
+							<div>
+								<div class="ui-canvas" data-id="ui-canvas"></div>
+							</div>
+						</div>
+					</div>
+				</dt>
+				<dd>
+					<div class="editor-info create">
+						<div class="ui-tab">
+							<ul>
+								<li><label><input name="tab" type="radio" checked><div>락커 정보</div></label></li>
+								<li><label><input name="tab" type="radio"><div>공간 설정</div></label></li>
+							</ul>
+						</div>
+						<div class="tab tab-1 focus">
+							<form class="locker" onsubmit="return false" autocomplete="off">
+								<div class="middle">
+									<ul>
+										<li>
+											<table>
+												<tr>
+													<th>왼쪽</th>
+													<td>
+														<input name="left" type="number" value="0" data-event="changeItem">
+													</td>
+												</tr>
+												<tr>
+													<th>위</th>
+													<td>
+														<input name="top" type="number" value="0" data-event="changeItem">
+													</td>
+												</tr>
+												<tr>
+													<th>가로</th>
+													<td>
+														<input name="width" type="number" value="0" data-event="changeItem">
+													</td>
+												</tr>
+												<tr>
+													<th>세로</th>
+													<td>
+														<input name="height" type="number" value="0" data-event="changeItem">
+													</td>
+												</tr>
+											</table>
+										</li>
+										<li>
+											<table>
+												<tr class="multiple">
+													<th>표시 문구</th>
+													<td>
+														<input name="value" type="text" value="" data-event="changeItem" placeholder="예 : 001">
+														<label class="ui-input-checkbox" style="margin-top:8px">
+															<input name="isLocker" type="checkbox" checked data-event="changeItem">
+															<span></span>
+															락커 여부
+														</label>
+													</td>
+												</tr>
+												<tr>
+													<th>문구 회전</th>
+													<td>
+														<dl>
+															<dt><button type="button" data-type="left" data-event="changeRotate">왼쪽</button></dt>
+															<dd><button type="button" data-type="right" data-event="changeRotate">오른쪽</button></dd>
+														</dl>
+													</td>
+												</tr>
+												<tr>
+													<th>배경 이미지</th>
+													<td>
+														<label class="ui-input-file">
+															<span>선택된 파일이 없습니다.</span>
+															<input name="backgroundImage" type="file" data-event="uploadImage">
+														</label>
+													</td>
+												</tr>
+											</table>
+										</li>
+										<li class="hidden update multiple">
+											<table>
+												<tr>
+													<th>락커 복사</th>
+													<td>
+														<div class="copy">
+															<table>
+																<tr>
+																	<td></td>
+																	<td><button type="button" data-type="top" data-event="copy">위</button></td>
+																	<td></td>
+																</tr>
+																<tr>
+																	<td><button type="button" data-type="left" data-event="copy">왼쪽</button></td>
+																	<td></td>
+																	<td><button type="button" data-type="right" data-event="copy">오른쪽</button></td>
+																</tr>
+																<tr>
+																	<td></td>
+																	<td><button type="button" data-type="bottom" data-event="copy">아래</button></td>
+																	<td></td>
+																</tr>
+															</table>
+														</div>
+													</td>
+												</tr>
+											</table>
+										</li>
+									</ul>
+								</div>
+								<div class="bottom">
+									<button class="hidden update reserved" type="button" data-event="remove">삭제</button>
+									<button class="hidden create" type="button" data-event="create">등록</button>
+								</div>
+							</form>
+						</div>
+						<div class="tab tab-2">
+							<div class="middle">
+								<ul>
+									<li>
+										<table>
+											<tr>
+												<th>가로</th>
+												<td><input name="x" type="number" value="20" data-event="changeSpace"></td>
+											</tr>
+											<tr>
+												<th>세로</th>
+												<td><input name="y" type="number" value="20" data-event="changeSpace"></td>
+											</tr>
+										</table>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</dd>
+			</dl>
+		</div>
+	</main>
+</body>
+<script type="text/javascript">
+function doReady() {
+	doPage.open();
+}
+
+const mockup = {
+	itemList : [
+		{left : 0, top : 0, width : 20, height : 5, value : "Lorem ipsum dolor", backgroundImage : "https://cdn.wallpapersafari.com/69/42/q2yjx6.jpg", isLocker : false},
+
+		{left : 1, top : 6, width : 3, height : 4, rotate : -90, value : "003", isLocker : true},
+		{left : 1, top : 10, width : 3, height : 4, rotate : -90, value : "002", isLocker : true},
+		{left : 1, top : 14, width : 3, height : 4, rotate : -90, value : "001", isLocker : true},
+
+		{left : 7, top : 6, width : 3, height : 4, rotate : 90, value : "004", isLocker : true},
+		{left : 7, top : 10, width : 3, height : 4, rotate : 90, value : "005", isLocker : true},
+		{left : 7, top : 14, width : 3, height : 4, rotate : 90, value : "006", isLocker : true},
+
+		{left : 10, top : 14, width : 3, height : 4, rotate : 270, value : "007", isLocker : true},
+		{left : 10, top : 10, width : 3, height : 4, rotate : 270, value : "008", isLocker : true},
+		{left : 10, top : 6, width : 3, height : 4, rotate : 270, value : "009", isLocker : true},
+
+		{left : 16, top : 6, width : 3, height : 4, rotate : 90, value : "010", isLocker : true},
+		{left : 16, top : 10, width : 3, height : 4, rotate : 90, value : "011", isLocker : true},
+		{left : 16, top : 14, width : 3, height : 4, rotate : 90, value : "012", isLocker : true},
+	]
+};
+
+const doPage = {
+	container : undefined,
+	canvas : undefined,
+	open : function() {
+		this.render();
+	},
+	render : function() {
+		const self = this.event.self = this;
+		this.container = document.getElementById("editor");
+
+		this.canvas = this.event.canvas = new uiCanvas(this.container, `
+			<div>
+				<img src="" data-name="backgroundImage" />
+				<h2 data-name="value"></h2>
+			</div>
+			<span></span>
+		`, (itemInfo) => {
+			let rotate = itemInfo.rotate || 0;
+			if(rotate == -90 || rotate == 270) rotate = "left";
+			else if(rotate == 90 || rotate == -270) rotate = "right";
+			else if(Math.abs(rotate) == 180) rotate = "bottom";
+			if(rotate) {
+				itemInfo.node.classList.add(rotate);
+			}
+
+			const bgColor = (itemInfo.backgroundColor || "").toLowerCase();
+			if(bgColor) {
+				itemInfo.node.classList.add(bgColor);
+			}
+
+			if(!itemInfo.isLocker) {
+				itemInfo.node.classList.add("text");
+			}
+		});
+
+		this.canvas.setMatrix(20, 20, 20);
+
+		this.canvas.addEventListener("changeSelection", (isPosition) => {
+			this.event.updateCanvasInfo(isPosition);
+		});
+		this.canvas.addEventListener("selectionEnd", (selectionInfo) => {
+			this.event.changeSelectionEnd(selectionInfo);
+		});
+
+		this.canvas.createItemList(mockup.itemList);
+
+		uiEvent(this.container, {
+			click : {
+				remove : () => {this.event.removeItem();},
+				create : () => {this.event.createItem();},
+				copy : function() {self.event.copyItem(this);},
+				changeRotate : function() {self.event.changeRotate(this);},
+			},
+			change : {
+				changeType : (event) => {this.event.changeType(event);},
+				changeSpace : () => {this.event.changeSpace(this);},
+				changeItem : (event) => {this.event.changeItem(event);},
+				uploadImage : function() {self.event.uploadImage(this);}
+			}
+		});
+		uiTab(this.container);
+	},
+	event : {
+		removeItem : function() {
+			this.canvas.removeItemList();
+		},
+		createItem : function() {
+			const form = this.self.container.querySelector("form");
+			const itemInfo = this.canvas.itemInfo;
+			const selectionInfo = this.canvas.selectionInfo;
+
+			if(itemInfo.isLocker == undefined) {
+				itemInfo.isLocker = true;
+			}
+
+			itemInfo.left = this.canvas.xPixelToUnit(selectionInfo.left);
+			itemInfo.top = this.canvas.yPixelToUnit(selectionInfo.top);
+			itemInfo.width = this.canvas.xPixelToUnit(selectionInfo.width);
+			itemInfo.height = this.canvas.yPixelToUnit(selectionInfo.height);
+
+			if(!(itemInfo.width && itemInfo.height)) {
+				alert("크기를 설정해 주세요.");
+				return;
+			}
+			const sequence = this.canvas.createItem(itemInfo);
+			this.canvas.createSelection(sequence);
+		},
+		copyItem : function(input) {
+			const type = input.getAttribute("data-type");
+			const selectionInfo = this.canvas.selectionList[0];
+			const matrixInfo = this.canvas.matrixInfo;
+
+			let value = selectionInfo.value;
+			if(selectionInfo.isLocker) {
+				value = Math.max(...this.canvas.itemList.map(item => getNumber(item.value)));
+				value = (value + 1).zf((selectionInfo.value || "").length);
+			}
+
+			let left = selectionInfo.left, top = selectionInfo.top;
+			const width = selectionInfo.width, height = selectionInfo.height;
+
+			switch(type) {
+				case "left" : left -= width; break;
+				case "top" : top -= height; break;
+				case "bottom" : top += height; break;
+				case "right" : left += width; break;
+			}
+
+
+			if(left < 0 || top < 0 || top + height > matrixInfo.y || left + width > matrixInfo.x) {
+				uiToast("공간이 부족합니다.");
+				return;
+			}
+			const newItem = Object.assign({}, selectionInfo, {left : left, top : top, width : width, height : height, value : value});
+
+			const sequence = this.canvas.createItem(newItem);
+			this.canvas.createSelection(sequence);
+		},
+		setFileName : function(name, value) {
+			const input = this.self.container.querySelector("input[name='" + name + "']");
+			value = (value) ? value.replace(/\//g, "\\") : input.value;
+			const span = input.parentNode.querySelector("span");
+			const fileName = (value) ? value.substr(value.lastIndexOf("\\") + 1) : "선택된 파일이 없습니다.";
+			span.innerHTML = fileName;
+		},
+		changeType : function(event) {
+			const form = this.self.container.querySelector("form");
+			const type = form.getValue("type").toLowerCase();
+			form.className = type;
+			if(event) this.changeItem(event);
+		},
+		changeSpace : function() {
+			const x = Number(this.self.container.getValue("x"));
+			const y = Number(this.self.container.getValue("y"));
+			this.canvas.setMatrix(x, y, 20);
+		},
+		changeRotate : function(input) {
+			const type = input.getAttribute("data-type");
+			const itemList = (this.canvas.selectionList.length) ? this.canvas.selectionList : [this.canvas.itemInfo];
+			itemList.forEach(item => {
+				let rotate = item.rotate || 0;
+				rotate += (type == "left") ? -90 : 90;
+				if(Math.abs(rotate) == 360) rotate = 0;
+				item.rotate = rotate;
+			});
+			this.canvas.renderItem();
+		},
+		changeItem : function(event) {
+			const target = event.currentTarget;
+			const itemList = (this.canvas.selectionList.length) ? this.canvas.selectionList : [this.canvas.itemInfo];
+			const name = target.name;
+			itemList.forEach(item => {
+				let value = target.value;
+				if(target.type == "number") {
+					value = Number(value);
+				} else if(name == "isLocker") {
+					value = (target.checked);
+				}
+				item[name] = value;
+			});
+			this.canvas.renderItem();
+		},
+		uploadImage : function(input) {
+			const url = (input.value) ? URL.createObjectURL(input.files[0]) : "";
+			this.setFileName(input.name);
+			if(this.canvas.selectionList.length) {
+				this.canvas.selectionList.forEach(item => {
+					item[input.name] = url;
+				});
+				this.canvas.renderItem();
+			} else {
+				this.canvas.itemInfo[input.name] = url;
+			}
+		},
+		changeSelectionEnd : function(selectionInfo) {
+			const form = this.self.container.querySelector("form");
+
+			const div = selectionInfo.node;
+			const isSelection = (selectionInfo.width && selectionInfo.height);
+			const itemInfo = this.canvas.itemInfo;
+			selectionInfo = this.canvas.selectionInfo;
+
+			["left", "top", "width", "height"].forEach(name => {
+				let value = selectionInfo[name];
+				if(name == "left" || name == "width") {
+					value = this.canvas.xPixelToUnit(value);
+				} else {
+					value = this.canvas.yPixelToUnit(value);
+				}
+				form.putValue(name, (isSelection) ? value : 0);
+			});
+
+			if(isSelection && !this.canvas.selectionList.length) {
+				div.classList.add("focusing");
+			} else {
+				div.classList.remove("focusing");
+			}
+		},
+		updateCanvasInfo : function(isPosition) {
+			const selectionList = this.canvas.selectionList;
+			const selectionListLength = this.canvas.selectionList.length;
+			const form = this.self.container.querySelector("form");
+			const div = form.parentNode.parentNode;
+			div.className = "editor-info " + ((selectionListLength) ? "update" : "create");
+			const isMultiple = (selectionListLength > 1);
+			if(isMultiple) div.classList.add("multiple");
+			const hasReserved = selectionList.some(item => (item.isReserved));
+			if(hasReserved) div.classList.add("reserved");
+
+			const reset = () => {
+				const nodeList = form.querySelectorAll("input, select, textarea");
+				nodeList.forEach(item => {
+					const defaultValue = item.getAttribute("data-value");
+					item.value = (defaultValue) ? defaultValue : (item.type == "number") ? 0 : "";
+					if(item.type == "file") {
+						const span = item.parentNode.querySelector("span");
+						span.innerHTML = "선택된 파일이 없습니다.";
+					} else if(item.type == "checkbox") {
+						item.checked = true;
+					}
+				});
+			};
+
+			if(selectionListLength && !isMultiple) {
+				const itemInfo = selectionList[0];
+				if(isPosition) {
+					["left", "top", "width", "height"].forEach(item => {
+						form.putValue(item, itemInfo[item]);
+					});
+				} else {
+					reset();
+					for(let name in itemInfo) {
+						const value = itemInfo[name];
+						if(name.indexOf("Image") > -1) {
+							this.setFileName(name, value);
+						} else if(name == "value" && itemInfo.type == "TEXTAREA") {
+							form.querySelector("textarea").value = itemInfo[name];
+						} else if(name == "isLocker") {
+							form.putValue("isLocker", (itemInfo[name]) ? "Y" : "N");
+						} else {
+							form.putValue(name, value);
+						}
+					}
+				}
+			} else {
+				reset();
+			}
+			if(!isPosition) this.changeType();
+		}
+	}
+};
+
+</script>
+</html>

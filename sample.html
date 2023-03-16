@@ -1,0 +1,363 @@
+<!doctype html>
+<html>
+<head>
+	<title>Tinyor</title>
+	
+	<meta property="og:url" content=""/>
+	<meta property="og:title" content=""/>
+	<meta property="og:description" content=""/>
+	<meta property="og:image" content=""/>
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=EDGE"/>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<meta name="author" content=""/>
+	<meta name="google" value="notranslate"/>
+	<meta name="description" content=""/>
+	<meta name="format-detection" content="telephone=no, address=no, email=no"/>
+	
+	<script type="text/javascript" src="./static/js/common.js"></script>
+	<script type="text/javascript" src="./static/js/ui.js"></script>	
+	<script type="text/javascript" src="./static/js/ui-canvas.js"></script>
+	<script type="text/javascript" src="./static/js/ui-image.js"></script>	
+	
+	<link rel="icon" href="./favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="./static/css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="./static/css/ui.css"/>
+	<link type="text/css" rel="stylesheet" href="./static/css/ui-canvas.css">
+	
+	<style type="text/css">
+body							{padding:50px 0; background-color:#f2f3f4}
+main							{display:block; margin:0 auto; padding:50px; max-width:768px; background-color:white; border-radius:10px; border:1px solid #ccc; box-sizing:border-box}
+main > ul > li + li				{margin-top:65px}
+main > ul > li > ul > li + li	{margin-top:35px}
+
+main h2,
+main h4,
+main h5							{margin-bottom:8px}
+main h4 + h5					{margin-top:-8px}
+main h2 + p						{margin:-8px 0 16px 0}
+
+main input,
+main .ui-button,
+main .ui-select,
+main .ui-textarea,
+main .ui-input-calendar,
+main .ui-input-calendar input	{display:block; width:100%; max-width:100%}
+main .ui-clock .ui-select		{display:inline-block}
+main .ui-button + .ui-button	{margin:10px 0 0 0}
+
+main .gallery dl				{margin-top:10px}
+main .chart						{}
+main .chart dl dt				{padding-right:10px}
+main .chart dl dd				{padding-left:10px}
+main .chart .ui-chart			{min-height:275px}
+
+main .title						{text-align:center}
+main .title h2					{margin-bottom:0; font-size:2.75em}
+main .title h3					{font-size:1.75em; font-family:"Times New Roman", "Times", "Serif"}
+
+@media(max-width:768px) {
+body							{padding:0}
+main							{padding:25px; border-radius:0; border:none}
+main .chart dl *				{display:block}
+main .chart dl dd				{margin-top:10px}
+}
+	</style>
+</head>
+<body>
+	<main>
+		<ul>
+			<li class="title">
+				<img src="./static/img/brand/img_book.png" />
+				<h2 class="blue">UI/UX SAMPLE</h2>
+				<h3><i>by Siyoung, Cho</i></h3>
+			</li>
+		
+			<li>
+				<h2 class="blue">INPUT</h2>
+				<ul>
+					<li>
+						<h4>TEXT</h4>
+						<h5>텍스트를 입력하실 수 있습니다.</h5>
+						<input type="text" placeholder="텍스트를 입력해 주세요.">
+					</li>
+					<li>
+						<h4>NUMBER</h4>
+						<h5>숫자를 입력하실 수 있습니다.</h5>
+						<input type="number" placeholder="숫자를 입력해 주세요.">
+					</li>
+					<li>
+						<h4>INTEGER</h4>
+						<h5>최소값, 최대값, 최대 길이를 설정할 수 있습니다.</h5>
+						<input type="integer" min="0" max="10000" maxlength="5" placeholder="정수를 입력해 주세요.">
+					</li>					
+					<li>
+						<h4>CURRENCY</h4>
+						<h5>금액을 입력하시면, 콤마가 자동으로 붙여 집니다.</h5>
+						<input type="currency" maxlength="10" placeholder="금액을 입력해 주세요.">
+					</li>
+					<li>
+						<h4>CHECKBOX</h4>
+						<label class="ui-input-checkbox">
+							<input name="checkbox" type="checkbox" value="1" checked>
+							<span></span>
+							아이템1
+						</label>
+						<label class="ui-input-checkbox">
+							<input name="checkbox" type="checkbox" value="2">
+							<span></span>
+							아이템2
+						</label>
+						<label class="ui-input-checkbox">
+							<input name="checkbox" type="checkbox" value="3" disabled>
+							<span></span>
+							아이템3
+						</label>
+						<label class="ui-input-checkbox">
+							<input name="checkbox" type="checkbox" value="4" checked disabled>
+							<span></span>
+							아이템4
+						</label>						
+					</li>					
+					<li>
+						<h4>RADIO</h4>
+						<label class="ui-input-radio">
+							<input name="radio1" type="radio" value="1" checked>
+							<span></span>
+							아이템1
+						</label>
+						<label class="ui-input-radio">
+							<input name="radio1" type="radio" value="2">
+							<span></span>
+							아이템2
+						</label>
+						<label class="ui-input-radio">
+							<input name="radio2" type="radio" value="3" disabled>
+							<span></span>
+							아이템3
+						</label>
+						<label class="ui-input-radio">
+							<input name="radio2" type="radio" value="4" checked disabled>
+							<span></span>
+							아이템4
+						</label>						
+					</li>
+					<li>
+						<h4>SWITCH</h4>
+						<label class="ui-input-switch">
+							<input name="switch" type="checkbox" value="2">
+							<span></span>
+							<span>끄기</span>
+							<span>켜기</span>
+						</label>
+					</li>
+					<li>
+						<h4>CALENDAR</h4>
+						<h5>달력을 표시해 날짜를 선택합니다.</h5>
+						<input name="calendar" type="calendar">
+					</li>
+					<li>
+						<h4>CLOCK</h4>
+						<h5>시간을 선택해 입력합니다.</h5>
+						<input name="clock" type="clock">
+					</li>
+				</ul>
+			</li>
+			<li>
+				<h2 class="blue">SELECT</h2>
+				<ul>
+					<li>
+						<h4>SINGLE</h4>
+						<h5>하나의 아이템만 선택할 수 있습니다.</h5>
+						<select class="ui-select">
+							<option>선택해 주세요.</option>
+							<option>아이템1</option>
+							<option>아이템2</option>
+							<option>아이템3</option>
+						</select>
+					</li>
+					<li>
+						<h4>MULTIPLE</h4>
+						<h5>복수의 아이템을 선택할 수 있습니다.</h5>
+						<select class="ui-select" multiple>
+							<option>선택해 주세요.</option>
+							<option>아이템1</option>
+							<option>아이템2</option>
+							<option>아이템3</option>
+						</select>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<h2 class="blue">TEXTAREA</h2>
+				<h5>기본 모양의 텍스트 입력창 입니다.</h5>
+				<textarea class="ui-textarea" placeholder="내용을 입력해 주세요."></textarea>
+			</li>
+			<li>
+				<h2 class="blue">BUTTON</h2>
+				<ul>
+					<li>
+						<button class="ui-button blue">버튼</button>
+						<button class="ui-button white blue">버튼</button>
+					</li>					
+				</ul>
+			</li>
+			<li>
+				<h2 class="blue">POPUP</h2>
+				<ul>
+					<li>
+						<h4>ALERT</h4>
+						<button class="ui-button red" onClick="uiAlert({title : '경고창', contents : '여기에 설명을 입력해 주세요.'})">경고창</button>
+					</li>
+					<li>
+						<h4>CONFIRM</h4>
+						<button class="ui-button green" onClick="uiConfirm({title : '확인창', contents : '여기에 설명을 입력해 주세요.'})">확인창</button>
+					</li>					
+					<li>
+						<h4>MODAL</h4>
+						<button class="ui-button blue" onClick="doPopup()">모달창</button>
+					</li>					
+					<li>
+						<h4>TOAST</h4>
+						<button class="ui-button purple" onClick="uiToast('토스트 메시지 입니다.')">확인창</button>
+					</li>					
+				</ul>
+			</li>
+			<li class="gallery">
+				<h2 class="blue">IMAGE SLIDER</h2>
+				<ul>
+					<li>
+						<h4>이미지 사이즈 고정</h4>
+						<h5></h5>
+						<div id="ui-gallery-1" class="ui-gallery">
+							<ul>
+								<li><img src="./static/img/sample/1.jpg"/></li>
+								<li><img src="./static/img/sample/2.jpg"/></li>
+								<li><img src="./static/img/sample/3.jpg"/></li>
+								<li><img src="./static/img/sample/4.jpg"/></li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<h4>이미지 사이즈 확대</h4>					
+						<h5></h5>
+						<div id="ui-gallery-2" class="ui-gallery">
+							<ul>
+								<li><img src="./static/img/sample/1.jpg"/></li>
+								<li><img src="./static/img/sample/2.jpg"/></li>
+								<li><img src="./static/img/sample/3.jpg"/></li>
+								<li><img src="./static/img/sample/4.jpg"/></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</li>
+			<li class="compare">
+				<h2 class="blue">IMAGE COMPARE</h2>
+				<div id="ui-compare" class="ui-compare">
+					<ul>
+						<li><img src="./static/img/sample/1.jpg" /></li>
+						<li><div><img src="./static/img/sample/2.jpg" /></div><span></span></li>
+					</ul>
+				</div>			
+			</li>
+			<li class="chart">
+				<h2 class="blue">PIE CHART</h2>
+				<dl>
+					<dt><div id="ui-chart-1" class="ui-chart"></div></dt>
+					<dd><div id="ui-chart-2" class="ui-chart"></div></dd>
+				</dl>
+			</li>
+			<li class="link">
+				<h2 class="blue">UI/UX RESEARCH</h2>
+				<p class="ui-note blue">
+					모바일 환경에서는 제대로 보이지 않습니다.
+				</p>
+				<ul>
+					<li>
+						<h4>커스텀 체크인</h4>
+						<div><a class="blue" href="./ui-canvas.html">- LINK TO CUSTOM CHECKIN</a></div>
+					</li>
+					<li>
+						<h4>락커 셋팅</h4>
+						<div><a class="blue" href="./ui-locker.html">- LINK TO LOCKER SETTING</a></div>
+					</li>
+				</ul>
+			</li>			
+		</ul>
+	</main>
+</body>
+<script type="text/javascript">
+function doReady() {
+	uiGallery({
+		container	: "ui-gallery-1",
+		margin		: 10,
+		padding		: 0,
+		maxWidth	: 275,
+		infinite	: true,
+		autoplay	: false
+		});
+		
+	uiGallery({
+		container	: "ui-gallery-2",
+		margin		: 10,
+		padding		: 25,
+		infinite	: true,
+		});
+		
+	uiGallery({
+		container	: "ui-gallery-3",
+		ratio		: 0.55,
+		effect		: "fade",
+		autoplay	: true
+		});
+		
+	uiImageCompare("ui-compare");
+	
+	new uiPieChart({
+		canvas	: document.getElementById("ui-chart-1"),
+		value	: [10, 20, 30, 20, 20],
+		color	: ["#f55220", "#ffd000", "#62d22c", "#4c8cfc", "#8f5b99"],
+		label	: ["RED", "YELLOW", "GREEN", "BLUE", "PURPLE"],
+		size	: 40,
+	});
+		
+	new uiPieChart({
+		canvas	: document.getElementById("ui-chart-2"),
+		value	: [20, 30, 40],
+		color	: ["#8f5b99", "#4c8cfc", "#62d22c"],
+		size	: 40,
+		arc		: 270
+	});		
+}
+
+function doPopup() {
+	uiPopup({
+		template : `
+			<div class="tiny">
+				<div class="top">
+					<h2>제목<a data-event="close"></a></h2>
+				</div>
+				<div class="middle">
+					내용을 입력해 주세요.
+				</div>
+				<div class="bottom">
+					<button class="ui-button blue" data-event="close">
+						확인
+					</button>
+				</div>
+			</div>
+		`,
+		event : {
+			click : {
+				close : function() {
+					uiPopup();
+				}
+			}
+		}
+	})
+}
+</script>
+</html>

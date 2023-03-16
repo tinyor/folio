@@ -1,0 +1,460 @@
+<!doctype html>
+<html>
+<head>
+	<title>Tinyor</title>
+	
+	<meta property="og:url" content=""/>
+	<meta property="og:title" content=""/>
+	<meta property="og:description" content=""/>
+	<meta property="og:image" content=""/>
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=EDGE"/>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+	<meta name="author" content=""/>
+	<meta name="google" value="notranslate"/>
+	<meta name="description" content=""/>
+	<meta name="format-detection" content="telephone=no, address=no, email=no"/>
+	
+	<script type="text/javascript" src="./static/js/common.js"></script>
+	<script type="text/javascript" src="./static/js/ui.js"></script>	
+	<script type="text/javascript" src="./static/js/ui-canvas.js"></script>
+	
+	<link rel="icon" href="./favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="./static/css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="./static/css/ui.css"/>
+	<link type="text/css" rel="stylesheet" href="./static/css/ui-canvas.css">
+	
+	<style type="text/css"></style>
+</head>
+
+<body>
+	<main>
+		<div id="editor" class="editor">
+			<dl>
+				<dt>
+					<div>
+						<div class="device" data-id="device">
+							<div class="ui-canvas" data-id="ui-canvas"></div>
+						</div>
+					</div>
+				</dt>
+				<dd>
+					<div class="editor-info create">
+						<div class="ui-tab">
+							<ul>
+								<li><label><input name="tab" type="radio" checked><div>아이템 정보</div></label></li>
+								<li><label><input name="tab" type="radio"><div>배경 설정</div></label></li>
+							</ul>
+						</div>
+						<div class="tab tab-1 focus">
+							<form onsubmit="return false" autocomplete="off">
+								<div class="middle">
+									<ul>
+										<li>
+											<table>
+												<tr>
+													<th>타입</th>
+													<td>
+														<label class="select">
+															<select name="type" data-event="changeType">
+																<option value="">선택</option>
+																<option value="">선택</option>
+																<option value="BUTTON">버튼</option>
+																<option value="IMAGE">이미지</option>
+																<option value="IFRAME">링크 박스</option>
+																<option value="TEXT">텍스트</option>
+																<option value="TEXTAREA">텍스트 박스</option>
+																<option value="KEYPAD-OUTPUT" disabled>키패드 출력(변경 불가)</option>
+															</select>
+														</label>
+													</td>
+												</tr>
+												<tr class="hidden button image text">
+													<th>클릭 이벤트</th>
+													<td>
+														<label class="select">
+															<select name="eventName" data-event="changeItem">
+																<option value="">미선택</option>
+																<option value="">미선택</option>
+																<optgroup label="키패드">
+																	<option value="KEYPAD-1">1</option>
+																	<option value="KEYPAD-2">2</option>
+																	<option value="KEYPAD-3">3</option>
+																	<option value="KEYPAD-4">4</option>
+																	<option value="KEYPAD-5">5</option>
+																	<option value="KEYPAD-6">6</option>
+																	<option value="KEYPAD-7">7</option>
+																	<option value="KEYPAD-8">8</option>
+																	<option value="KEYPAD-9">9</option>
+																	<option value="KEYPAD-0">0</option>
+																	<option value="KEYPAD-BACK">BACK</option>
+																	<option value="KEYPAD-CLEAR">CLEAR</option>
+																</optgroup>
+																<optgroup label="버튼">
+																	<option value="SCHEDULE">스케줄 입장</option>
+																	<option value="PASS">이용권 입장</option>
+																	<option value="PLACE">시설 입장</option>
+																	<option value="EXIT">퇴장</option>
+																	<option value="CALL-STAFF">직원 호출</option>
+																</optgroup>
+															</select>
+														</label>
+													</td>
+												</tr>
+											</table>
+										</li>
+										<li>
+											<table>
+												<tr><th>왼쪽</th><td><input name="left" type="number" value="0" data-event="changeItem"></td></tr>
+												<tr><th>위</th><td><input name="top" type="number" value="0" data-event="changeItem"></td></tr>
+												<tr><th>가로</th><td><input name="width" type="number" value="0" data-event="changeItem"></td></tr>
+												<tr><th>세로</th><td><input name="height" type="number" value="0" data-event="changeItem"></td></tr>
+											</table>
+										</li>
+										<li class="hidden button image">
+											<table>
+												<tr>
+													<th>기본 이미지</th>
+													<td>
+														<label class="ui-input-file">
+															<span>선택된 파일이 없습니다.</span>
+															<input name="backgroundImage" type="file" data-event="uploadImage">
+														</label>
+													</td>
+												</tr>
+												<tr>
+													<th>액션 이미지</th>
+													<td>
+														<label class="ui-input-file">
+															<span>선택된 파일이 없습니다.</span>
+															<input name="activeBackgroundImage" type="file" data-event="uploadImage">
+														</label>
+													</td>
+												</tr>
+											</table>
+										</li>
+										<li>
+											<table>
+												<tr class="hidden text textarea">
+													<th>폰트 사이즈</th>
+													<td>
+														<label class="select">
+															<select name="fontSize" data-value="MEDIUM" data-event="changeItem">
+																<option value="">미선택</option>
+																<option value="LARGER">더 크게</option>
+																<option value="LARGE">크게</option>
+																<option value="MEDIUM" selected>보통</option>
+																<option value="SMALL">작게</option>
+																<option value="SMALLER">더 작게</option>
+															</select>
+														</label>
+													</td>
+												</tr>
+												<tr class="hidden text textarea">
+													<th>폰트 색상</th>
+													<td>
+														<label class="select">
+															<select name="fontColor" data-value="BLACK" data-event="changeItem">
+																<option value="">미선택</option>
+																<option value="BLACK" selected>검정</option>
+																<option value="WHITE">흰색</option>
+															</select>
+														</label>
+													</td>
+												</tr>
+												<tr class="hidden text">
+													<th>텍스트</th>
+													<td><input name="value" type="text" value="" data-event="changeItem"></td>
+												</tr>
+												<tr class="hidden textarea">
+													<th>텍스트 박스</th>
+													<td><textarea name="value" value="" data-event="changeItem"></textarea></td>
+												</tr>
+												<tr class="hidden iframe">
+													<th>링크 주소</th>
+													<td><input name="value" type="text" placeholder="https://" data-event="changeItem"></td>
+												</tr>
+											</table>
+										</li>
+									</ul>
+								</div>
+								<div class="bottom">
+									<button class="hidden update reserved" type="button" data-event="remove">삭제</button>
+									<button class="hidden update" type="button" data-event="create">복사</button>
+									<button class="hidden create" type="button" data-event="create">등록</button>
+								</div>
+							</form>
+						</div>
+						<div class="tab tab-2">
+							<div class="middle">
+								<ul>
+									<li>
+										<table>
+											<tr>
+												<th>배경 이미지</th>
+												<td>
+													<label class="ui-input-file">
+														<span>선택된 파일이 없습니다.</span>
+														<input name="background" type="file" data-event="uploadImage">
+													</label>
+												</td>
+											</tr>
+											<tr>
+												<th>해상도(비율)</th>
+												<td>
+													<label class="select">
+														<select name="ratio" data-event="changeDevice">
+															<option value="">선택</option>
+															<option value="75%" selected>4:3(iPad)</option>
+															<option value="70%">23:16(iPad Air)</option>
+															<option value="66.66%">3:2(Surface)</option>
+															<option value="62.5%">16:10(Galaxy Tab)</option>
+														</select>
+													</label>
+												</td>
+											</tr>
+										</table>
+									</li>
+									<li>
+										<table>
+											<tr>
+												<th>보기 설정</th>
+												<td>
+													<label class="ui-input-checkbox">
+														<input name="grid" type="checkbox" data-event="changeView">
+														<span></span>
+														격자
+													</label>
+													<label class="ui-input-checkbox">
+														<input name="snap" type="checkbox" data-event="changeView">
+														<span></span>
+														스냅
+													</label>
+												</td>
+											</tr>
+										</table>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</dd>
+			</dl>
+		</div>
+	</main>
+</body>
+<script type="text/javascript">
+
+
+const mockup = {
+	itemList : [
+		{type : "KEYPAD-OUTPUT", left : 60, top : 10, width : 30, height : 8.5, isReserved : true},
+		{type : "BUTTON", left : 60, top : 22, width : 10, height : 12.5, eventName : "KEYPAD-1"},
+		{type : "BUTTON", left : 70, top : 22, width : 10, height : 12.5, eventName : "KEYPAD-2"},
+		{type : "BUTTON", left : 80, top : 22, width : 10, height : 12.5, eventName : "KEYPAD-3"},
+		{type : "BUTTON", left : 60, top : 34.5, width : 10, height : 12.5, eventName : "KEYPAD-4"},
+		{type : "BUTTON", left : 70, top : 34.5, width : 10, height : 12.5, eventName : "KEYPAD-5"},
+		{type : "BUTTON", left : 80, top : 34.5, width : 10, height : 12.5, eventName : "KEYPAD-6"},
+		{type : "BUTTON", left : 60, top : 47, width : 10, height : 12.5, eventName : "KEYPAD-7"},
+		{type : "BUTTON", left : 70, top : 47, width : 10, height : 12.5, eventName : "KEYPAD-8"},
+		{type : "BUTTON", left : 80, top : 47, width : 10, height : 12.5, eventName : "KEYPAD-9"},
+		{type : "BUTTON", left : 60, top : 59.5, width : 10, height : 12.5, eventName : "KEYPAD-CLEAR"},
+		{type : "BUTTON", left : 70, top : 59.5, width : 10, height : 12.5, eventName : "KEYPAD-0"},
+		{type : "BUTTON", left : 80, top : 59.5, width : 10, height : 12.5, eventName : "KEYPAD-BACK"},
+		{type : "BUTTON", left : 60, top : 75, width : 30, height : 8.5, eventName : "SCHEDULE"},
+		{type : "BUTTON", left : 60, top : 83.5, width : 30, height : 8.5, eventName : "EXIT"},
+
+		{type : "IMAGE", left : 8, top : 16, width : 15, height : 20, backgroundImage : "./static/img/sample/1.jpg"},
+		{type : "TEXT", left : 8, top : 40, width : 37.5, height : 6, fontColor : "WHITE", value : "Lorem ipsum dolor"},
+		{type : "TEXTAREA", left : 8, top : 48, width : 37.5, height : 28, fontSize : "SMALLER", fontColor : "WHITE", value : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco."},
+
+		{type : "TEXT", left : 8, top : 80, width : 37.5, height : 8.5, fontSize : "SMALL", fontColor : "WHITE", value : "CALL STAFF", eventName : "CALL-STAFF"},
+	]
+};
+
+
+
+function doReady() {
+	console.log("called");
+	doPage.open();
+};
+
+
+
+const doPage = {
+	container : undefined,
+	canvas : undefined,
+	open : function() {
+		this.render();
+	},
+	render : function() {
+		const self = this.event.self = this;
+		this.container = document.getElementById("editor");
+
+		this.canvas = this.event.canvas = new uiCanvas(this.container);
+		this.canvas.setRelativeMode();
+		this.canvas.setBackgroundImage("https://cdn.wallpapersafari.com/69/42/q2yjx6.jpg");
+		this.canvas.createItemList(mockup.itemList);
+		this.canvas.addEventListener("changeSelection", (isPosition) => {this.event.updateCanvasInfo(isPosition)});
+
+		uiEvent(this.container, {
+			click : {
+				remove : () => {this.event.removeItem();},
+				create : () => {this.event.createItem();}
+			},
+			change : {
+				changeItem : (event) => {this.event.changeItem(event);},
+				uploadImage : function() {self.event.uploadImage(this);},
+				changeType : (event) => {this.event.changeType(event);},
+				changeView : (event) => {this.event.changeView(event);},
+				changeDevice : (event) => {this.event.changeDevice(event);}
+			}
+		});
+		uiTab(this.container);
+	},
+	event : {
+		removeItem : function() {
+			this.canvas.removeItemList();
+		},
+		createItem : function() {
+			const isSelected = (this.canvas.selectionList.length == 1);
+			const itemInfo = (isSelected) ? this.canvas.selectionList[0] : this.canvas.itemInfo;
+			const newItem = JSON.parse(JSON.stringify(itemInfo));
+
+			if(!newItem.type) {
+				alert("타입을 선택해 주세요.");
+				return;
+			}
+
+			if(newItem.width == undefined) newItem.width = 10;
+			if(newItem.height == undefined) newItem.height = 10;
+			if(newItem.left == undefined) newItem.left = 45;
+			if(newItem.top == undefined) newItem.top = 45;
+
+			if(isSelected) {
+				newItem.left += newItem.width * 0.2;
+				newItem.top += newItem.height * 0.2;
+			}
+
+			if(!newItem.width || !newItem.height) {
+				alert("가로 또는 세로 크기를 입력해 주세요.");
+				return;
+			}
+			const sequence = this.canvas.createItem(newItem);
+			console.log("sequence : " + sequence);
+			this.canvas.createSelection(sequence);
+		},
+		setFileName : function(name, value) {
+			const input = this.self.container.querySelector("input[name='" + name + "']");
+			value = (value) ? value.replace(/\//g, "\\") : input.value;
+			const span = input.parentNode.querySelector("span");
+			const fileName = (value) ? value.substr(value.lastIndexOf("\\") + 1) : "선택된 파일이 없습니다.";
+			span.innerHTML = fileName;
+		},
+		changeType : function(event) {
+			const form = this.self.container.querySelector("form");
+			const type = form.getValue("type").toLowerCase();
+			form.className = type;
+			const isReserved = this.canvas.selectionList.some(item => item.isReserved);
+			form.querySelector("[name='type']").disabled = (isReserved);
+			if(event) this.changeItem(event);
+		},
+		uploadImage : function(input) {
+			const url = (input.value) ? URL.createObjectURL(input.files[0]) : "";
+			this.setFileName(input.name);
+			if(input.name == "background") {
+				const img = this.canvas.canvas.querySelector("img");
+				if(img) {
+					img.src = url;
+					img.classList.add("focus");
+				}
+			} else {
+				if(this.canvas.selectionList.length) {
+					this.canvas.selectionList.forEach(item => {
+						item[input.name] = url;
+					});
+					this.canvas.renderItem();
+				} else {
+					this.canvas.itemInfo[input.name] = url;
+				}
+			}
+		},
+		changeItem : function(event) {
+			const target = event.currentTarget;
+			const itemList = (this.canvas.selectionList.length) ? this.canvas.selectionList : [this.canvas.itemInfo];
+			itemList.forEach(item => {
+				const value = (target.type == "number") ? Number(target.value) : target.value;
+				item[target.name] = value;
+			});
+			this.canvas.renderItem();
+		},
+		changeView : function(event) {
+			const target = event.currentTarget;
+			const name = target.name;
+			const dataName = (name == "grid") ? "isGrid" : (name == "snap") ? "isSnap" : "";
+			this.canvas[dataName] = (target.checked);
+			if(target.name == "grid") {
+				this.canvas.toggleGrid();
+			}
+		},
+		changeDevice : function(event) {
+			const target = event.currentTarget;
+			const value = target.value || "75%";
+			const div = this.canvas.container.querySelector("[data-id='device']");
+			div.style.paddingBottom = value;
+
+			this.canvas.width = this.canvas.canvas.offsetWidth;
+			this.canvas.height = this.canvas.canvas.offsetHeight;
+		},
+		updateCanvasInfo : function(isPosition) {
+			const selectionList = this.canvas.selectionList;
+			const selectionListLength = this.canvas.selectionList.length;
+			const form = this.self.container.querySelector("form");
+			const div = form.parentNode.parentNode;
+			div.className = "editor-info " + ((selectionListLength) ? "update" : "create");
+			const isMultiple = (selectionListLength > 1);
+			if(isMultiple) div.classList.add("multiple");
+			const hasReserved = selectionList.some(item => (item.isReserved));
+			if(hasReserved) div.classList.add("reserved");
+
+			const reset = () => {
+				const nodeList = form.querySelectorAll("input, select, textarea");
+				nodeList.forEach(item => {
+					const defaultValue = item.getAttribute("data-value");
+					item.value = (defaultValue) ? defaultValue : (item.type == "number") ? 0 : "";
+					if(item.type == "file") {
+						const span = item.parentNode.querySelector("span");
+						span.innerHTML = "선택된 파일이 없습니다.";
+					}
+				});
+			};
+
+			if(selectionListLength && !isMultiple) {
+				const itemInfo = selectionList[0];
+				if(isPosition) {
+					["left", "top", "width", "height"].forEach(name => {
+						form.putValue(name, itemInfo[name]);
+					});
+				} else {
+					reset();
+					for(let name in itemInfo) {
+						if(name.indexOf("Image") > -1) {
+							this.setFileName(name, itemInfo[name]);
+						} else if(name == "value" && itemInfo.type == "TEXTAREA") {
+							form.querySelector("textarea").value = itemInfo[name];
+						} else {
+							form.putValue(name, itemInfo[name]);
+						}
+					}
+				}
+			} else {
+				reset();
+			}
+			if(!isPosition) this.changeType();
+		}
+	}
+};	
+</script>
+</html>
