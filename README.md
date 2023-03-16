@@ -1,2 +1,2 @@
 # Sample.html
-<https://tinyor.github.io/folio/sample.html>
+<https://github.com/tinyor/folio/portfolio.png>
